@@ -1,0 +1,133 @@
+\chapter{Implementation and Experimental Setup}\thispagestyle{thesisstyle} %chapter head
+\graphicspath{{Chapter6/}}
+{\setstretch{1.5}
+%--------------------------------------------------------------------------------------
+
+\section{Test Cases}\label{sec:tc}
+The test cases are small, fixed examples that check the behaviour of the system that the numbers in Chapter~8 cannot show one by one. The message examples are written by the team. Their domains use the reserved \texttt{.invalid} name, so no real site or person is involved. They are chosen in pairs: for every scam message there is a genuine message that uses the same words, because a detector that cannot tell them apart is useless. Table~\ref{tab:tc} lists them. The measured result of each case is given in Section~\ref{sec:ft}.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{1.1cm}|p{1.7cm}|p{6.9cm}|p{4.3cm}|}
+\caption{Test cases and expected results}\label{tab:tc}\\
+\hline \textbf{ID} & \textbf{Channel} & \textbf{Input} & \textbf{Expected} \\ \hline
+\endfirsthead
+\hline \textbf{ID} & \textbf{Channel} & \textbf{Input} & \textbf{Expected} \\ \hline
+\endhead
+\hline
+\endfoot
+TC1 & SMS & Friend tells another that he will reach college in ten minutes & Ham, Safe \\ \hline
+TC2 & SMS & Friend asks to go to the library to finish an assignment & Ham, Safe \\ \hline
+TC3 & SMS & Shop offers 40\% off footwear this weekend & Spam, Safe (not a scam) \\ \hline
+TC4 & SMS & Pre-approved personal loan offer from a promotional header & Spam, Safe (not a scam) \\ \hline
+TC5 & SMS & Bank-style header: ``KYC verification today, click the link and enter customer ID and OTP'' & Smishing, Suspicious or Phishing \\ \hline
+TC6 & SMS & ``Parcel not delivered, pay a small redelivery fee at this link'' & Smishing, Suspicious or Phishing \\ \hline
+TC7 & SMS & Genuine bank OTP message that says ``never share this OTP with anyone'' & Ham, Safe \\ \hline
+TC8 & SMS & Bank fraud-awareness advisory: ``never share your OTP, UPI PIN or card details'' & Ham, Safe \\ \hline
+TC9 & SMS & The text of TC5 with look-alike characters (zero for O, digit for I) & Still not Safe \\ \hline
+TC10 & Email & Team lead sends meeting minutes & Ham, Safe \\ \hline
+TC11 & Email & Classmate shares lecture notes & Ham, Safe \\ \hline
+TC12 & Email & Shop newsletter, up to 60\% off & Spam, Safe (not a scam) \\ \hline
+TC13 & Email & Personal-loan offer from a lender & Spam, Safe (not a scam) \\ \hline
+TC14 & Email & ``Unusual activity, verify within 30 minutes with your password and OTP'' & Phishing \\ \hline
+TC15 & Email & ``Parcel on hold, confirm your address at this link'' & Phishing \\ \hline
+TC16 & Email & Genuine sign-in notice: ``if this was you, no action is needed'' & Ham, Safe \\ \hline
+TC17 & Email & Genuine subscription renewal notice with an account link & Ham, Safe \\ \hline
+TC18 & Call & Caller says he is from the bank, says the account will be blocked today, asks the person to read out the OTP and not to tell anyone & Phishing, alert after two windows \\ \hline
+TC19 & Call & Bank reminder: ``we will never ask for your OTP, PIN or CVV'' & Safe \\ \hline
+TC20 & Call & Dentist's office confirms an appointment & Safe \\ \hline
+TC21 & Caller number & Caller claims to be from a bank but the number is an ordinary mobile number & Behaviour score 0.60 \\ \hline
+TC22 & Caller number & The same claim from a number in the 1600 series & Behaviour score 0 \\ \hline
+TC23 & Email, Gmail & Mail that fails SPF, DKIM or DMARC from a new sender & At least Suspicious \\ \hline
+TC24 & Email, Gmail & Content-clean mail from a first-ever sender, with a link, once profiles are ready & Suspicious, never Phishing \\ \hline
+TC25 & Email, Gmail & The same Gmail message processed twice & One stored scan \\ \hline
+TC26 & Phone & SMS arrives while the phone is offline & Scored and stored on the phone \\ \hline
+TC27 & Phone & The Kotlin model and the Python model are given the same fixed messages & Same scores and verdicts \\ \hline
+TC28 & Phone & An audit report is made from messages that contain codes, amounts and account numbers & These are replaced by placeholders; links are kept \\ \hline
+TC29 & Website & A request to a scan route without a valid session & Refused \\ \hline
+\end{longtable}
+}
+
+\section{Data Set}\label{sec:dataset}
+Table~\ref{tab:data} lists every data set and what it was used for. The \emph{Role} column says whether it was used to train (Tr) or only to test (Te). Three sources are private: two team members' mailboxes and one SMS inbox. They were used with the owners' consent, are never published, and no message text appears in any log or in this report.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{5.0cm}|p{1.0cm}|p{7.7cm}|}
+\caption{Data sets and their role (Tr = train, Te = held-out test)}\label{tab:data}\\
+\hline \textbf{Data set} & \textbf{Role} & \textbf{Notes} \\ \hline
+\endfirsthead
+\hline \textbf{Data set} & \textbf{Role} & \textbf{Notes} \\ \hline
+\endhead
+\hline
+\endfoot
+\multicolumn{3}{|l|}{\textit{SMS (three classes: ham, spam, smishing)}} \\ \hline
+UCI SMS Spam~\cite{almeida2011sms}; a rebalanced 10{,}191-row release of~\cite{mishra2022sms}; Indian fraud SMS; 750 Indian promotional SMS written by us; one Indian inbox (1{,}436 messages) & Tr, Te & 17{,}307 training rows including obfuscated twins; 2{,}596 template groups held out \\ \hline
+Mishra and Soni 5{,}971-row release~\cite{mishra2022sms} & Te & 1{,}780 rows that are not in the 10{,}191-row file (removed by exact-text match) \\ \hline
+\multicolumn{3}{|l|}{\textit{Email (ham, spam, phishing)}} \\ \hline
+CEAS-08, Nazario, Nigerian Fraud~\cite{alsubaiey2024dataset} & Tr, Te & CEAS 1--7 August 2008 for training and 8 August for testing; phishing split by year inside each corpus \\ \hline
+Enron, Ling, SpamAssassin~\cite{alsubaiey2024dataset} & Te & 38{,}407 mails that were never trained on \\ \hline
+phishing\_pot~\cite{phishingpot} and two private mailboxes & Tr, Te & Mail up to 2024 for training; 2025--26 mail for testing (8{,}725 mails) \\ \hline
+CMU Enron~\cite{klimt2004enron}; Enron-Spam~\cite{metsis2006enronspam} & Tr, Te & 1{,}500 colleague mails; six Enron-Spam mailboxes held out \\ \hline
+A third person's mailbox & Te & 791 legitimate mails, held out by person \\ \hline
+\multicolumn{3}{|l|}{\textit{Links}} \\ \hline
+PhiUSIIL~\cite{prasad2024phiusiil} & Tr & 235{,}795 URLs, host string only \\ \hline
+OpenPhish~\cite{openphish} and Tranco~\cite{lepochat2019tranco} & Te & 600 live phishing links and 50{,}000 top sites \\ \hline
+\multicolumn{3}{|l|}{\textit{Voice content}} \\ \hline
+FTC robocalls; scam-baiting calls from channels of~\cite{bhupendra2023scambait} & Tr & 1{,}353 robocalls; 465 calls, with two channels held out to choose the model \\ \hline
+HarperValleyBank~\cite{wu2020harpervalley} & Tr, Te & 1{,}446 real bank calls, split in halves A and B \\ \hline
+Scam-baiting calls from seven further channels & Te & 105 calls never seen in training \\ \hline
+27 recorded two-party calls & Te & 12 scam and 15 legitimate public recordings \\ \hline
+\multicolumn{3}{|l|}{\textit{Synthetic voice}} \\ \hline
+ASVspoof 2019 and 5~\cite{wang2020asvspoof2019,wang2024asvspoof5}; MLAAD~\cite{muller2024mlaad}; real speech including phone calls & Tr & MLAAD tools split by family, so whole families of tools stay unseen \\ \hline
+ASVspoof 2021 LA~\cite{liu2023asvspoof2021}; In-the-Wild~\cite{muller2022itw}; 41 unseen MLAAD tools; Edge-TTS & Te & 400 clips per codec and label for ASVspoof 2021 and 5 \\ \hline
+\end{longtable}
+}
+
+\subsection{How the data sets were used}
+\begin{itemize}
+\item \textbf{SMS.} Indian SMS datasets contain about 3{,}200 rows that come from only about 1{,}400 templates. A random split puts near-copies on both sides and gives a simple baseline an F1 of 0.99. The data was therefore split by \emph{template group} (the first six words of each Indian message). The rebalanced file is a copy of the 5{,}971-row release, so exact duplicates were removed before testing.
+\item \textbf{Email.} Mail is split by \emph{time} inside each corpus and, for personal mail, by \emph{person}. The newest mail (2025--26) tests whether a model trained on older mail still works on new campaigns.
+\item \textbf{Links.} The model is trained on one source (PhiUSIIL) and tested on a different, live source. Only the host name is used, because the other fields of that data set identify how it was collected.
+\item \textbf{Voice.} Calls are split by YouTube channel and by corpus, so that the voice or the style of one channel is never on both sides.
+\end{itemize}
+
+\subsection{Rules fixed before testing}
+No k-fold cross-validation is used anywhere. Before a model was promoted, its pass or fail conditions (for example, ``real voices flagged no more than 2 points above the current model'') were written into the experiment script before the test set was scored. Chapter~8 reports one case in which a model failed such a rule and was still shipped, and why.
+
+\section{Experimental Setup}
+All training ran on one laptop with an Intel 13th-generation CPU (20 threads), 16 GB of memory and an NVIDIA RTX 4060 Laptop GPU with 8 GB. Random seeds for splits and sampling are fixed at zero. Table~\ref{tab:hyper} gives the settings of every model.
+
+\begin{table}[H]
+\caption{Model settings}
+\label{tab:hyper}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{2.6cm}|p{11.6cm}|}
+\hline
+\textbf{Model} & \textbf{Settings} \\ \hline
+SMS & Character 3--5-gram TF-IDF (word-boundary padded, sublinear term frequency) and logistic regression with $C=10$ \\ \hline
+Email & \texttt{distilbert-base-uncased}~\cite{sanh2019distilbert}, 256 tokens, 2 epochs, batch size 16, AdamW with learning rate $3\times10^{-5}$, weight 0.3 on the auxiliary persuasion loss \\ \hline
+Links & XGBoost~\cite{chen2016xgboost}, 400 trees, depth 6, learning rate 0.1, 15 domain-based features \\ \hline
+Speech to text & Whisper small~\cite{radford2023whisper} through faster-whisper, half precision \\ \hline
+Act model & \texttt{distilbert-base-uncased}, 256 tokens, 3 epochs, trained on judgements of Qwen2.5-7B~\cite{qwen2025} over scam-baiting calls \\ \hline
+Synthetic voice & Frozen wav2vec2 XLS-R 300M~\cite{babu2022xlsr}, layer 20, mean and standard deviation pooling, 4 s crop, logistic regression head \\ \hline
+Baselines & scikit-learn~\cite{pedregosa2011sklearn} linear SVM, logistic regression and naive Bayes on the same rows \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Statistics.} Confidence intervals are percentile bootstrap intervals with 1{,}000 resamples~\cite{efron1993bootstrap}, or Wilson intervals~\cite{wilson1927} for proportions. Accuracy is not used as the main measure for rare classes, because a model that calls everything harmless is 98.8\% accurate on the link test set. Precision, recall, false-alarm rates and area under the curve are reported instead.
+
+\section{Implementation of the Deployed System}
+\textbf{Model service.} The models are loaded once, when the service starts, and kept in memory. Because of this, the service is started without an auto-reload option. The service listens only on the local machine, and the website reaches it from there.
+
+\textbf{Website.} The dashboard owns the database schema. The first time it connects, it runs the whole schema script, which can be run again safely. Gmail is polled, not pushed: a timer started when the server starts asks Gmail every 60 seconds for new mail using Gmail's history list, so only new messages are fetched. Each message is sent to the model service, and the result is saved once, so a repeated poll never creates a duplicate.
+
+\textbf{Gmail connection.} When an account is connected, the headers of recent inbox mail and the recipients of recent sent mail are sent to the model service without scoring anything. This gives the behaviour engine a history from the first minute. A person the mailbox has written to is a known contact and not a stranger.
+
+\textbf{Android app.} The SMS and link models are exported from Python into small binary files that the Kotlin code loads. After any retraining, the export is run again together with fixed test messages, and the phone tests fail if the Kotlin result differs from the Python result. The application file is copied to the website's download folder by hand after each build.
+
+\textbf{Privacy rules in the code.} Voice analysis runs on the server and only on audio that the user uploads. Safe Browsing receives only hash prefixes. A message that has been scored once is not scored again, because scoring also updates the sender's profile and a second pass would count the same message twice.
+
+\section{Summary}
+This chapter listed the test cases, the data sets and how they were split, the settings of every model and how the deployed system is put together. The next chapter shows how the system was tested.
+
+%--------------------------------------------------------------------------------------
+}

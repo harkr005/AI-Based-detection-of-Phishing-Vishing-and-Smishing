@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The audit report, and only that directory. Android/data is unreadable by
+     file managers from Android 11 on, so a report written there can only leave
+     the phone through a share sheet — which is also the way a friend sends one
+     back without needing adb. -->
+<paths>
+    <external-files-path
+        name="reports"
+        path="." />
+</paths>

@@ -1,0 +1,151 @@
+\chapter{System Requirement Specification}\thispagestyle{thesisstyle} %chapter head
+\graphicspath{{Chapter3/figures/}}
+{\setstretch{1.5}
+%--------------------------------------------------------------------------------------
+
+\section{Overall Description}
+
+\subsection{Product perspective}
+The product is a self-contained scam detector made of three programs that share one PostgreSQL database.
+\begin{itemize}
+\item The \textbf{model service} is a Python program (FastAPI) and the only place where the models run for web traffic.
+\item The \textbf{web dashboard} is a Next.js application. It owns the database schema, sign-in, Gmail polling and the page from which the Android app is downloaded.
+\item The \textbf{Android app} is a Kotlin application that scores SMS on the phone with exported copies of the Python models. It has no pairing with the website, no upload path and no internet permission.
+\end{itemize}
+
+\subsection{User classes}
+\begin{itemize}
+\item \textbf{Web user:} signs up, pastes an email or SMS, uploads a call, or connects a Gmail account, and reads the verdict and its reasons.
+\item \textbf{Phone user:} installs the Android app and sees a verdict on each SMS as it arrives.
+\item \textbf{Reviewer or examiner:} opens the ``Technical details'' section of a verdict to see the risk score, the contribution of each channel, the class probabilities and the links found.
+\end{itemize}
+
+\subsection{Operating environment}
+The model service and the dashboard were developed and run on a Windows 11 computer with Python 3.11, Node.js 22 and PostgreSQL 17; the software they use is cross-platform. The email and voice models run much faster on a GPU, but all models also run on a CPU. The Android app runs on Android 7.0 (API 24) or later.
+
+\subsection{Design and implementation constraints}
+\begin{itemize}
+\item The web framework cannot import the Python deep-learning libraries, so every web route that needs a model forwards the request to the model service.
+\item A user's message text must not be stored when it is not needed. Mail bodies are fetched live from Gmail when the user opens a message and are never saved.
+\item On Windows, the data-loading module must be imported before the deep-learning library, because of a library conflict.
+\item The Kotlin copies of the models must give the same output as the Python models. After any retraining the models are exported again and parity tests are run.
+\item Several obvious features were deliberately not used, because they encode how a public dataset was collected and not what a scam is (Section~\ref{sec:artifacts}).
+\end{itemize}
+
+\subsection{Assumptions and dependencies}
+\begin{itemize}
+\item Gmail access uses the read-only Google API scope, and the user must agree to it.
+\item Link checking against Google Safe Browsing needs an API key and a network connection. When either is missing, that check abstains and the verdict comes from the other sources.
+\item Screenshot input uses the Gemini API for text recognition and needs an API key. This feature is optional.
+\item Behaviour scoring needs a minimum number of known senders (20) before it gives a score, and abstains until then.
+\end{itemize}
+
+\section{Functional Requirements}
+Table~\ref{tab:fr} lists the functional requirements. Each requirement is checked in Chapter~7 and the results that justify them are in Chapter~8.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{1.2cm}|p{10.6cm}|p{2.6cm}|}
+\caption{Functional requirements}\label{tab:fr}\\
+\hline \textbf{ID} & \textbf{Requirement} & \textbf{Where tested} \\ \hline
+\endfirsthead
+\hline \textbf{ID} & \textbf{Requirement} & \textbf{Where tested} \\ \hline
+\endhead
+\hline
+\endfoot
+FR1 & A user can sign up and sign in with a username and password. Passwords are never stored in clear text, and a session lasts one week. & Section~\ref{sec:ft} \\ \hline
+FR2 & A user can paste an email and receive a verdict, a risk score, class probabilities, the pressure tactics found and the links found. & Section~\ref{sec:ft} \\ \hline
+FR3 & A user can paste an SMS, optionally with the sender header, and receive a verdict with reasons. & Section~\ref{sec:ft} \\ \hline
+FR4 & A user can upload call audio or paste a transcript, optionally with the caller number, and receive a verdict, a risk timeline and the scam moves found with their time and quote. & Section~\ref{sec:ft} \\ \hline
+FR5 & A user can connect a Gmail account with read-only access. New mail is checked automatically every 60 seconds, and verdicts are shown on a Gmail page. Mail bodies are not stored. & Section~\ref{sec:it} \\ \hline
+FR6 & The system keeps a profile for every sender and caller, updates it after each message is scored, and never scores the same message twice. & Section~\ref{sec:ut} \\ \hline
+FR7 & Every link found is checked by the link model and by Google Safe Browsing using only hash prefixes. & Section~\ref{sec:it} \\ \hline
+FR8 & Email attachments are checked: dangerous file types, and links inside PDF, HTML, SVG and calendar files. & Section~\ref{sec:ut} \\ \hline
+FR9 & All available scores are fused into Safe, Suspicious or Phishing, and every verdict lists the reasons that set it. & Section~\ref{sec:ut} \\ \hline
+FR10 & A ``Technical details'' section shows the risk score, the weight of each channel, the model confidence and entropy, the class probabilities and the persuasion scores. & Section~\ref{sec:at} \\ \hline
+FR11 & A user can tell the system that a verdict was wrong (``not a threat'' or ``is a threat''), and a sender the user vouches for stops being escalated. & Section~\ref{sec:ft} \\ \hline
+FR12 & A user can supply a screenshot, from which the text is read and then checked. & Section~\ref{sec:ft} \\ \hline
+FR13 & The Android app scores every incoming SMS on the device, keeps the results in a local database, and uploads nothing. & Section~\ref{sec:ut} \\ \hline
+FR14 & The Android app can audit the whole inbox in one pass and produce a report in which codes, amounts and account numbers are masked. The report leaves the phone only when the user shares it. & Section~\ref{sec:ut} \\ \hline
+FR15 & The dashboard shows the history of earlier scans and a risk timeline. & Section~\ref{sec:at} \\ \hline
+FR16 & A download page offers the Android app as an APK file. & Section~\ref{sec:at} \\ \hline
+\end{longtable}
+}
+
+\section{Non-Functional Requirements}
+Table~\ref{tab:nfr} lists the non-functional requirements and where the justification is given.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{2.6cm}|p{8.2cm}|p{3.6cm}|}
+\caption{Non-functional requirements}\label{tab:nfr}\\
+\hline \textbf{Quality} & \textbf{Requirement} & \textbf{Justified in} \\ \hline
+\endfirsthead
+\hline \textbf{Quality} & \textbf{Requirement} & \textbf{Justified in} \\ \hline
+\endhead
+\hline
+\endfoot
+Accuracy & Every figure is measured on data not used in training. The one numeric target set in advance was a smishing recall of at least 0.90 on a different corpus. & Sections~\ref{sec:res-sms}, \ref{sec:res-email} \\ \hline
+Speed & A message must be scored fast enough to feel instant on a phone and to keep up with a live call on a server. & Section~\ref{sec:res-cost} \\ \hline
+Privacy & The phone app has no internet permission. Mail bodies are not stored. Safe Browsing receives only 4-byte hash prefixes. Reports are masked before sharing. & Section~\ref{sec:sec} \\ \hline
+Security & Passwords are hashed with a salt. Sessions use a signed cookie. Gmail tokens are encrypted at rest. & Section~\ref{sec:sec} \\ \hline
+Explainability & Each verdict gives reasons in plain language, and the reasons must be faithful to what the model used. & Section~\ref{sec:res-faith} \\ \hline
+Robustness & Missing information (no link, no profile, no network) makes a source abstain. It is never replaced by a neutral default. & Sections~\ref{sec:method-fusion}, \ref{sec:it} \\ \hline
+Portability & The phone app supports Android 7.0 and later. The services were built on Windows with cross-platform software. & Section~\ref{sec:sw} \\ \hline
+Usability & Verdicts and advice are written for a person with no technical background. The technical numbers are one click away. & Section~\ref{sec:at} \\ \hline
+Maintainability & Each module has a self-check script, and the Kotlin ports are protected by parity tests. & Section~\ref{sec:ut} \\ \hline
+Cost & The system must run on one ordinary computer and a phone, with open-source software. & Section~\ref{sec:feas} \\ \hline
+\end{longtable}
+}
+
+\section{Hardware Requirements}
+Table~\ref{tab:hw} gives the hardware used during development and what is needed to run the system.
+
+\begin{table}[H]
+\caption{Hardware requirements}
+\label{tab:hw}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{3.3cm}|p{5.7cm}|p{5.2cm}|}
+\hline
+\textbf{Item} & \textbf{Used in this project} & \textbf{To run the system} \\ \hline
+Processor & Intel 13th-generation CPU, 20 threads & Any modern multi-core CPU \\ \hline
+Memory & 16 GB & 16 GB recommended for the email and voice models \\ \hline
+Graphics card & NVIDIA RTX 4060 Laptop GPU, 8 GB & Optional; speeds up email, voice and speech-to-text \\ \hline
+Disk space & Trained weights about 4.4 GB (datasets about 47 GB, only for retraining) & About 5 GB for the weights and the database \\ \hline
+Phone & Android phone with SMS access & Android 7.0 (API 24) or later; the model files are 2.1 MB \\ \hline
+Network & Used for Gmail, Safe Browsing and OCR only & Not needed for the phone app \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Software Requirements}\label{sec:sw}
+Table~\ref{tab:sw} lists the software used.
+
+\begin{table}[H]
+\caption{Software requirements}
+\label{tab:sw}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{3.6cm}|p{10.6cm}|}
+\hline
+\textbf{Area} & \textbf{Software} \\ \hline
+Model service & Python 3.11, PyTorch, Hugging Face Transformers (DistilBERT), scikit-learn, XGBoost, faster-whisper, FastAPI, uvicorn, psycopg \\ \hline
+Web dashboard & Node.js 22, Next.js 16, React 19, the \texttt{pg} PostgreSQL driver, Tailwind CSS, Radix UI components, Google Gmail API \\ \hline
+Database & PostgreSQL 17 \\ \hline
+Android app & Kotlin, Android SDK (compile and target level 34, minimum level 24), Room 2.6.1 for the local database, Gradle \\ \hline
+External services & Gmail API (read-only), Google Safe Browsing API v5, Gemini API (screenshot text recognition) \\ \hline
+Development tools & Git, Gradle, \LaTeX{} for the paper and this report \\ \hline
+Operating system & Windows 11 (development machine) \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Feasibility Analysis}\label{sec:feas}
+\textbf{Technical feasibility.} Every part of the system was built and run: the models were trained on one laptop, the service and dashboard run together, and the Android app passes its unit tests. The one technical risk was running the SMS model on the phone with the same results as the server, and this was handled by exporting the model and testing that both give the same output.
+
+\textbf{Economic feasibility.} The system runs on the team's own computer and phone. All the libraries used are open source, and the Google services were used within their free usage limits, so no money was spent on infrastructure.
+
+\textbf{Operational feasibility.} The website needs only a browser, and the phone app installs from a single APK file. Verdicts are written in plain language, so a person with no security background can act on them.
+
+\textbf{Legal and ethical feasibility.} Handling messages is sensitive, so the design follows the data-minimisation duty of India's Digital Personal Data Protection Act, 2023~\cite{dpdp2023} by construction: the phone app cannot send anything out, and the website does not store mail bodies. The private mailboxes and the SMS inbox used for training belong to team members and were used with the owners' consent. They are never published, and the models trained on them are not released.
+
+\section{Summary}
+This chapter defined the product as three cooperating programs, listed sixteen functional requirements and ten quality requirements, stated the hardware and software needed, and showed that the project is technically, economically, operationally and legally feasible. The next chapter describes how the system is designed to meet these requirements.
+
+%--------------------------------------------------------------------------------------
+}

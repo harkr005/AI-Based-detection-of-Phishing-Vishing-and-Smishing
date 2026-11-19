@@ -1,0 +1,19 @@
+\begin{center}\vspace{1.0in}
+\bfseries\LARGE{ABSTRACT} \\
+\end{center}\vspace{0.2in}
+%\begin{abstract}
+
+\normalsize{\begin{spacing}{1.4}
+% ----------------------------------------------------------------------
+\noindent
+
+Scams now move between email, SMS and phone calls, but most detection systems cover only one of these channels and are tested on random splits of a single dataset. This project builds one working system that checks all three. A small model for each channel reads the message itself: a character n-gram model for SMS, a DistilBERT model for email, a link model that looks only at the web address, and a speech pipeline with a synthetic-voice detector for calls. A behaviour engine keeps a profile of every sender and caller and measures how unusual a new message is. All scores are fused into one verdict (Safe, Suspicious or Phishing) together with reasons in plain language.
+
+The system is delivered as a web dashboard with Gmail integration, a Python model service, and an Android app that checks SMS fully on the phone and has no internet permission. Every result is measured on data the models never trained on. Email phishing precision and recall are 0.990 and 0.986 on a later-in-time split, and 0.916 and 0.862 on 2025--26 mail. SMS macro-F1 is 0.980 on its own data and 0.859 on a different corpus, where smishing recall falls to 0.786. Sender behaviour lifts spam recall on a 2008 mail stream from 0.611 to 0.912. On calls, 96.2\% of scam calls from seven unseen channels are caught, with 0.3\% false alarms on real bank calls. The report also records thirteen cases in which a public dataset encoded its own collection method and gave a convincing but false result.
+
+\vspace{0.3cm}
+\noindent\textbf{Keywords:} phishing, smishing, vishing, behavioural profiling, score fusion, audio anti-spoofing, explainable verdicts.
+
+\end{spacing}}
+
+%\end{abstract}

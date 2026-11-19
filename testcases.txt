@@ -1,0 +1,18 @@
+ham | 7000012345 | Bro, reaching college in 10 mins. Save a seat for me.
+ham | 7000012346 | Kal library chale? I need to finish the DBMS assignment.
+spam | VM-DEAL24 | Flat 40% off on selected footwear this weekend. Shop online and get free delivery.
+spam | AD-SALE88 | Pre-approved personal loan up to Rs. 5 lakh. Compare our rates and apply today.
+smishing | VM-HDFCBNK | Your account requires KYC verification today. Click https://hdfc-check.com/verify and enter your customer ID and OTP.
+smishing | 7000098765 | Your parcel could not be delivered. Pay Rs. 35 redelivery charge at https://delivery-fee.html/pay.
+ham | AD-SBIINB | Your OTP for the transaction is 483921. Never share this OTP with anyone. It is valid for 10 minutes.
+ham | VM-HDFCBNK | Fraud awareness: Never share your OTP, UPI PIN or card details with anyone calling you. Bank staff will never ask for these details.
+
+
+ham | teamlead@example.invalid | Team, minutes attached. Please add comments before the 5 PM review.
+ham | rohan.mehta@example.invalid | Hey, sharing the DBMS notes from yesterday's class. Let me know if anything is missing.
+spam | offers@megadeals.invalid | This weekend only: save up to 60% on headphones, monitors and accessories. Browse our latest offers.
+spam | loans@quickcredit.invalid | Need extra funds? Our current personal-loan rates start from 10.9%. Check eligibility and compare plans.
+phishing | security@paybank.invalid | We detected unusual activity. Verify your account within 30 minutes at https://paybank-login.invalid/verify using your password and OTP.
+phishing | delivery@parcel-track.invalid | Your parcel is on hold because the address could not be verified. Confirm your details at https://parcel-update.invalid/address.
+ham | no-reply@accounts-google.invalid | We noticed a sign-in to your Google account from a new device. If this was you, no action is needed. If not, review recent activity from your account settings.
+ham | billing@streamplus.invalid | Your StreamPlus subscription will renew tomorrow for Rs. 499. Manage or cancel the subscription from your account at https://streamplus.invalid/account.

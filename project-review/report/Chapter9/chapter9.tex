@@ -1,0 +1,40 @@
+\chapter*{}                  % Creates the chapter without displaying the title
+\addcontentsline{toc}{chapter}{Conclusion and Future Enhancement}
+\graphicspath{{Chapter6/}}
+{\setstretch{1.5}
+
+\begin{center}
+{\bfseries\Huge CONCLUSION AND FUTURE ENHANCEMENT}
+\end{center}
+\vspace{0.4cm}
+%--------------------------------------------------------------------------------------
+
+\noindent\textbf{\Large Conclusion}\\[0.2cm]
+This project set out to build one scam detector for email, SMS and phone calls, and to measure it honestly. The result is a working system made of a Python model service, a web dashboard with Gmail integration, and an Android app that checks SMS fully on the phone. Each channel has a small model, a shared behaviour engine keeps a profile of every sender and caller, and an adaptive fusion step gives one verdict, Safe, Suspicious or Phishing, with reasons in plain language.
+
+What was achieved can be stated in five points.
+\begin{enumerate}
+\item \textbf{One verdict across three channels.} A scam mail, a scam SMS and a scam call all produce the same kind of verdict with the same bands, and a source with nothing to say abstains instead of voting zero.
+\item \textbf{Sender behaviour broke a limit that text cannot break.} Spam recall on a mail stream rose from 0.611 to 0.912 when behaviour was allowed to escalate mail that the content model had cleared. The price, 8.5\% of cleared legitimate mail sent to the Suspicious band, is stated with the gain.
+\item \textbf{The models held up on unseen data where it matters.} Email phishing precision and recall are 0.990 and 0.986 on a later-in-time split, and 96.2\% of scam calls from seven unseen channels were caught with 0.3\% false alarms on real bank calls. Where the data shifted most, SMS from another corpus, the result degraded to a smishing recall of 0.786, and this is reported.
+\item \textbf{Privacy is part of the design.} The phone app has no internet permission, mail bodies are never stored, Safe Browsing receives only hash prefixes, and the SMS vocabulary shipped in the app is built from public text only.
+\item \textbf{The evaluation can fail.} No result comes from a random split. Thirteen cases in which a public data set encoded its own collection method were found and recorded, and each would have given a convincing but false result.
+\end{enumerate}
+
+Some objectives were only partly met. Smishing recall on a different corpus (0.786) is below the target of 0.90. Three short genuine emails in the functional tests were called Phishing when scored as a first message from an unknown sender. The link model has a low precision on a rare class (PR-AUC 0.585). The behaviour rules for SMS and calls could not be measured, because no public data set has sender or caller fields. Android does not let an app record calls, so the voice channel works on audio uploaded to the website and not on live calls from the phone.
+
+\vspace{0.4cm}
+\noindent\textbf{\Large Future Enhancement}\\[0.2cm]
+The measurements point to the following work.
+\begin{enumerate}
+\item \textbf{Regional SMS data.} A larger collection of Indian smishing and genuine bank messages would address the main weakness of the SMS model, and would allow it to reach the 0.90 recall target.
+\item \textbf{Fewer false alarms on genuine notices.} Short sign-in, billing and subscription notices need more training examples, and the Gmail path should be measured on them with authentication and repeat-sender trust switched on.
+\item \textbf{A real deployment log.} A multi-user study would make it possible to measure and fit the behaviour rules for SMS and calls, and to measure the crowd-report layer, which is switched on but unmeasured.
+\item \textbf{A hand-labelled persuasion set.} The persuasion head is used only to word explanations because its labels come from patterns. A labelled test set would show whether it can be trusted to score.
+\item \textbf{A fair QR-code test.} The QR-code check exists but is switched off, because the phishing corpus has no QR codes. A collection that includes them would decide whether to turn it on.
+\item \textbf{Alerts during a call.} An earlier attempt to score call fragments gave alerts that grew with call length. A future version must score the whole call so far, so that the end-of-call score equals the call-level score by construction.
+\item \textbf{Federated updates.} The phone models could be improved from many phones without any message leaving a phone.
+\end{enumerate}
+
+%--------------------------------------------------------------------------------------
+}

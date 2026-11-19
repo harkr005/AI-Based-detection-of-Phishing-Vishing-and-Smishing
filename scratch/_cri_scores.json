@@ -1,0 +1,141 @@
+{
+ "1SgIprVcrhk": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "3ej67cf8Om0": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "4ostqJD3Psc": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "6tuyfhHFl04": {
+  "risk": 0.65,
+  "acts": [
+   "remote"
+  ]
+ },
+ "AKvNo33j5Lw": {
+  "risk": 1.0,
+  "acts": [
+   "payment",
+   "remote",
+   "threat"
+  ]
+ },
+ "D7V0Oda3DAA": {
+  "risk": 1.0,
+  "acts": [
+   "payment",
+   "remote",
+   "urgency"
+  ]
+ },
+ "DwOVXz74N9c": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "GErcqNODmKE": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "GUpEfPB6pTI": {
+  "risk": 1.0,
+  "acts": [
+   "payment",
+   "threat",
+   "urgency",
+   "prize"
+  ]
+ },
+ "L2GJaVWQxeE": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "NOKYveLcpbs": {
+  "risk": 0.3,
+  "acts": [
+   "urgency"
+  ]
+ },
+ "NixDS21-CJA": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "Oy2UM-9XTeg": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "QPfJZUPAqzw": {
+  "risk": 0.65,
+  "acts": [
+   "remote"
+  ]
+ },
+ "SXGtFXRz2Lg": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "Sn03-wDNWhQ": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "_z96PFnIlEA": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "blj16Tq6pSw": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "jXRHb4sCM8c": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "neg9goBqcxc": {
+  "risk": 0.6,
+  "acts": [
+   "payment"
+  ]
+ },
+ "npYEmQW_GSk": {
+  "risk": 0.65,
+  "acts": [
+   "remote"
+  ]
+ },
+ "poFAzDCGLrI": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "qU7rpAKPMoU": {
+  "risk": 1.0,
+  "acts": [
+   "payment",
+   "secrecy"
+  ]
+ },
+ "qkPngqVgF9w": {
+  "risk": 1.0,
+  "acts": [
+   "credential",
+   "secrecy"
+  ]
+ },
+ "seQ5RRI6H4c": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "xJviwHrX2T8": {
+  "risk": 0.0,
+  "acts": []
+ },
+ "xMOGd1eS31A": {
+  "risk": 0.6,
+  "acts": [
+   "payment"
+  ]
+ }
+}

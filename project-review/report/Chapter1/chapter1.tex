@@ -1,0 +1,71 @@
+\chapter{Introduction}\thispagestyle{thesisstyle} %chapter head
+
+\graphicspath{{Chapter1/figures/}}
+{\setstretch{1.5}
+%--------------------------------------------------------------------------------------
+
+\section{Background}
+A scam is an attempt to trick a person into handing over money, a password, a one-time code (OTP) or personal details. Three kinds of scam account for most of the harm done through everyday communication.
+\begin{itemize}
+\item \textbf{Phishing} arrives by email. The mail pretends to come from a bank, a delivery company or an employer and asks the reader to click a link or open a file.
+\item \textbf{Smishing} arrives by SMS. A short text claims that a parcel is held, a KYC (know your customer) update is due, or an account will be blocked, and pushes the reader to a link.
+\item \textbf{Vishing} happens on a phone call. The caller poses as a bank officer or a police officer, creates fear or urgency, and asks for an OTP or a payment.
+\end{itemize}
+These three are rarely separate. A single campaign often starts with a phishing mail, follows with a ``verification'' SMS and ends with a call from someone who claims to be the bank. The person being targeted sees one story, but the defences see three unrelated messages. Mail filters do not see SMS, mobile operators do not see mail content, and calls are judged, at best, by the reputation of the caller's number.
+
+In India the problem has a local shape. Digital payments through UPI and mobile banking have brought many first-time users online, and these users are the easiest to frighten with a message such as ``your account will be blocked today''. The telecom regulator requires banks and businesses to send commercial SMS through registered headers, and bank call centres use a dedicated number series. These rules give a defender real signals to work with, but only if the system knows about them.
+
+\section{Overview}
+This project is a working scam detector that covers email, SMS and phone calls in one system. It is built as three programs that share one PostgreSQL database.
+\begin{itemize}
+\item A \textbf{Python model service} (FastAPI) that runs every model.
+\item A \textbf{web dashboard} (Next.js) with sign-in, pages to check a pasted email, SMS or call, and a Gmail page that checks a connected mailbox automatically.
+\item An \textbf{Android app} that checks each incoming SMS on the phone itself. The app has no internet permission, so nothing it reads can leave the phone.
+\end{itemize}
+
+Each channel has its own small model that reads the message. On top of that, a \emph{behaviour engine} keeps a profile for every sender and caller and measures how unusual a new message is: a first contact, a new domain, a failed email authentication check, an unregistered SMS header, or a caller who claims to be a bank but does not use the bank number series. A \emph{fusion} step combines all the scores into one verdict, \textbf{Safe}, \textbf{Suspicious} or \textbf{Phishing}, and lists the reasons in plain language.
+
+The central idea is simple. \emph{The content of a scam changes with every campaign, but the behaviour of the sender changes far less.} A new wording can fool a text model, but it is still sent by someone the user has never heard from, from a domain that has never been seen, with a link to a freshly registered site.
+
+\section{Motivation}
+The work was motivated by five observations.
+\begin{enumerate}
+\item \textbf{Scams cross channels, but defences do not.} No single tool that we found judges a mail, a text and a call together.
+\item \textbf{Most research results are optimistic.} Scam datasets are full of near-identical messages that differ only in a name or an amount. A random train/test split puts such twins on both sides, so the reported accuracy measures memory and not detection~\cite{arp2022dos,kapoor2023leakage}. We wanted every number in this project to come from data the model had never seen.
+\item \textbf{Text alone is not enough.} Newsletters, promotions and romance-scam openers read like ordinary mail. What makes them unwanted is who sent them and when. A behaviour layer addresses exactly this gap.
+\item \textbf{A phone that reads every SMS holds sensitive data.} The same app that can spot a scam also sees every bank OTP. A detector that uploads messages would itself be a risk, so privacy had to be part of the design from the start.
+\item \textbf{A verdict that cannot be explained is not trusted.} A user who is told only ``phishing, 93\%'' has no reason to act. Each verdict here carries reasons such as ``the link ends in a cheap domain scammers use'' or ``this sender has never written to you before''.
+\end{enumerate}
+
+\section{Problem Statement}
+To design, build and evaluate a single system that detects phishing (email), smishing (SMS) and vishing (voice) attacks, combining what each message says with how its sender or caller behaves, that returns one explainable verdict, that protects the privacy of the user's messages, and whose accuracy is measured only on data the models have not seen during training.
+
+\section{Overall Objective of the Project}
+The objectives of the project are:
+\begin{enumerate}
+\item To build a content model for each channel: SMS, email and call transcripts, together with a link model and a synthetic-voice detector.
+\item To build a behaviour engine that profiles senders and callers and scores how far a new message departs from their history.
+\item To fuse the scores into one verdict with clear reasons, using weights that adapt to how sure the content model is, and a safe rule for the case in which one source has nothing to report.
+\item To deliver the system as a website with Gmail integration and as an Android app that scores SMS fully on the phone.
+\item To evaluate every model on unseen data (later time periods, unseen corpora, an unseen person's mailbox and unseen scam-call channels), with pass or fail rules written before the test set is scored, and to report the weak results as openly as the strong ones.
+\end{enumerate}
+
+\section{Summary}
+Scams move between email, SMS and calls, while defences stay separate. This project joins the three channels in one system that reads the message, studies the sender's behaviour and returns one explainable verdict. The Android app keeps SMS checking entirely on the phone. The rest of this report describes how the system was designed, built, tested and measured.
+
+\section{Organization of Report}
+The remaining chapters are organised as follows.
+\begin{itemize}
+\item \textbf{Chapter 2, Literature Survey,} reviews existing work on email, SMS, link and voice scam detection, compares it, and states the research gap and the specific objectives.
+\item \textbf{Chapter 3, System Requirement Specification,} lists the functional and non-functional requirements, the hardware and software needed, and the feasibility of the project.
+\item \textbf{Chapter 4, System Design and Architecture,} presents the architecture, the software modules, the security measures, the database and the data flow, use case, activity and sequence diagrams.
+\item \textbf{Chapter 5, System Methodology,} explains the algorithms of each channel, the behaviour engine and the fusion rule, with pseudocode.
+\item \textbf{Chapter 6, Implementation and Experimental Setup,} describes the test cases, the datasets and the experimental set-up.
+\item \textbf{Chapter 7, System Testing,} reports unit, functional, integration and acceptance testing.
+\item \textbf{Chapter 8, Results and Discussions,} gives the measured results, with graphs, tables, comparison with existing work and an analysis of weak points.
+\item \textbf{Chapter 9, Conclusion and Future Enhancement,} summarises what was achieved and what remains.
+\item The \textbf{Appendices} contain the abbreviations, the complex engineering problem mapping, the sustainable development goals addressed, the publication status and the plagiarism report.
+\end{itemize}
+
+%--------------------------------------------------------------------------------------
+}

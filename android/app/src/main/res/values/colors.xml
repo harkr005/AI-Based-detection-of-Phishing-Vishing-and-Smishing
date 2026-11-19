@@ -1,0 +1,22 @@
+<resources>
+    <!-- Same tokens as web/app/globals.css's .dark block ("Kyntra" theme) -->
+    <color name="background">#060202</color>
+    <color name="surface">#120a09</color>
+    <color name="surface_variant">#1b1110</color>
+    <color name="muted">#170e0d</color>
+    <color name="accent">#ff3c1c</color>
+    <color name="accent_end">#ff1e00</color>
+    <color name="text_primary">#ffffff</color>
+    <color name="text_secondary">#b3a19f</color>
+    <color name="divider">#1affffff</color>
+    <color name="sidebar_bg">#0a0403</color>
+    <color name="sidebar_item_text">#b3a19f</color>
+    <!-- A SAFE message the content model read as marketing. Deliberately a
+         dull neutral: it is not a warning band, it is "junk, not a scam". -->
+    <color name="band_spam">#9c8e8b</color>
+
+    <!-- §3 verdict bands (same mapping as .band-SAFE/-SUSPICIOUS/-PHISHING) -->
+    <color name="band_safe">#22c55e</color>
+    <color name="band_suspicious">#ffc700</color>
+    <color name="band_phishing">#ff3c1c</color>
+</resources>

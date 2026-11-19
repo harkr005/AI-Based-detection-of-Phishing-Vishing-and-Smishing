@@ -1,0 +1,4 @@
+# The exported models are packed floats. Git guessed "text" for sms_charlr.bin
+# and would rewrite its line endings on checkout, which silently corrupts the
+# weights and breaks the parity tests on the next machine to clone this.
+*.bin binary

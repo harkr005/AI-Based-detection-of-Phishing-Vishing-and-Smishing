@@ -1,0 +1,155 @@
+\chapter{System Testing}\thispagestyle{thesisstyle} %chapter head
+\graphicspath{{Chapter6/}}
+{\setstretch{1.5}
+%--------------------------------------------------------------------------------------
+
+Testing in this project is done with self-checking scripts and unit tests rather than a test framework. Each module carries checks that fail if its logic breaks. The checks below were run on 30 October 2026, except the Android unit tests, whose latest run is dated 28 October 2026. Every result in this chapter was produced by running the code; none is copied from a plan.
+
+\section{Unit Testing}\label{sec:ut}
+Table~\ref{tab:unit} lists the unit-level checks. A unit check is used for a module that has a clear rule which can be tested alone, for example the band edges of the fusion step or the masking rules of the redaction code.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{3.0cm}|p{7.6cm}|p{3.4cm}|}
+\caption{Unit-level checks and results}\label{tab:unit}\\
+\hline \textbf{Module} & \textbf{What the check verifies} & \textbf{Result} \\ \hline
+\endfirsthead
+\hline \textbf{Module} & \textbf{What the check verifies} & \textbf{Result} \\ \hline
+\endhead
+\hline
+\endfoot
+\texttt{fusion.py} & Band edges (0.34 is Safe, 0.35 is Suspicious, 0.70 is Phishing); weights move to behaviour when the content model is unsure; the escalation and uncertainty gates; spam recall on the CEAS day-8 stream & Passed. Spam recall 0.611 without and 0.912 with behaviour \\ \hline
+\texttt{behaviour.py} & Profile features, address parsing (including a forged display name), authentication parsing & Passed \\ \hline
+\texttt{thread.py} & Rolling score over a series of SMS from one sender, with the same link extractor as every other path & Passed. A scam thread rose from 0.27 to 0.75 by the fourth message; a normal one stayed at 0.02 \\ \hline
+\texttt{store.py} & Saving and reloading sender profiles in PostgreSQL & Passed \\ \hline
+\texttt{data.py} & Loaders return the expected classes and sizes: 3-class SMS (ham 8{,}141, smishing 4{,}441, spam 3{,}332), 3-class email (ham 39{,}583, spam 37{,}978, phishing 4{,}897), 50{,}600 live links with 1.2\% malicious & Passed \\ \hline
+\texttt{voice\_model.py} & Rule patterns, the moving average and the call verdict on the evaluation sets & Ran to completion \\ \hline
+Mail parser check & Parsing of raw mail (headers, parts, attachments) & Passed \\ \hline
+Mail link check & The mail link model scores genuine tracking links low (0.19, 0.19, 0.06; the plain model gave 0.87, 0.96, 1.00) and keeps phishing links high (1.00, 0.99) & Passed \\ \hline
+\texttt{hash.test.mjs} & Password hashing with a salt, password and username rules, signed session tokens that reject a wrong key, tampering and expiry, and sealing of the Gmail token & Passed \\ \hline
+Android: \texttt{RedactTest} & Codes, amounts, account numbers and addresses are masked; links are kept & 7 of 7 passed \\ \hline
+Android: \texttt{SmsModelTest} & The Kotlin SMS model matches the Python model, explains like it, handles disguised words and text outside the vocabulary & 5 of 5 passed \\ \hline
+Android: \texttt{VerdictTest} & Plain-language explanation of a verdict: wording of link and sender findings, percentages, band names & 9 of 9 passed \\ \hline
+Android: \texttt{MessageStoreTest} & Local message store: order, failed scans, one message from two capture paths & 5 of 5 passed \\ \hline
+Android: \texttt{SamplesTest} & Every sample message produces an explanation with no placeholder left in it & 2 of 2 passed \\ \hline
+\end{longtable}
+}
+
+The Android unit tests total 35 (35 passed, 0 failed, 0 skipped), together with the parity tests described in Section~\ref{sec:it}.
+
+\textbf{Justification.} The fusion, behaviour and redaction checks protect the rules whose failure would be most harmful: a wrong band, a profile that sees its own message, or a private value that is shared. The mail link check keeps the reason for a separate mail link model visible: the plain link model gave the tracking links of genuine senders a high score.
+
+\section{Functional Testing}\label{sec:ft}
+The test cases of Table~\ref{tab:tc} were run through the shipped models on 30 October 2026. Messages were scored the way a first-ever message from an unknown sender is scored: content model, link model and fusion, with no sender history and without Safe Browsing. This is the same path that a pasted email or SMS takes on a fresh profile. Table~\ref{tab:ftres} gives the measured results.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{1.1cm}|p{4.2cm}|p{4.0cm}|p{1.3cm}|p{1.9cm}|}
+\caption{Functional test results}\label{tab:ftres}\\
+\hline \textbf{ID} & \textbf{Expected} & \textbf{Measured} & \textbf{Risk} & \textbf{Result} \\ \hline
+\endfirsthead
+\hline \textbf{ID} & \textbf{Expected} & \textbf{Measured} & \textbf{Risk} & \textbf{Result} \\ \hline
+\endhead
+\hline
+\endfoot
+TC1 & Ham, Safe & Safe (ham 0.975) & 0.005 & Pass \\ \hline
+TC2 & Ham, Safe & Safe (ham 0.972) & 0.019 & Pass \\ \hline
+TC3 & Spam, Safe & Safe (spam 0.983) & 0.005 & Pass \\ \hline
+TC4 & Spam, Safe & Safe (spam 0.832) & 0.043 & Pass \\ \hline
+TC5 & Smishing, not Safe & Phishing (smishing 0.968, link 0.54) & 0.808 & Pass \\ \hline
+TC6 & Smishing, not Safe & Phishing (smishing 0.844, link 0.84) & 0.841 & Pass \\ \hline
+TC7 & Ham, Safe & Safe (ham 0.995) & 0.000 & Pass \\ \hline
+TC8 & Ham, Safe & Safe (ham 0.997) & 0.001 & Pass \\ \hline
+TC9 & Not Safe & Suspicious (smishing 0.695) & 0.637 & Pass \\ \hline
+TC10 & Ham, Safe & Safe (ham 1.00) & 0.000 & Pass \\ \hline
+TC11 & Ham, Safe & Safe (ham 1.00) & 0.000 & Pass \\ \hline
+TC12 & Spam, Safe & Safe, but read as ham (phishing 0.139) & 0.139 & Pass (verdict) \\ \hline
+TC13 & Spam, Safe & \textbf{Phishing} (phishing 1.00) & 1.000 & \textbf{Fail} \\ \hline
+TC14 & Phishing & Phishing (phishing 0.975, link 0.99) & 0.980 & Pass \\ \hline
+TC15 & Phishing & Phishing (phishing 1.00, link 0.97) & 0.988 & Pass \\ \hline
+TC16 & Ham, Safe & \textbf{Phishing} (phishing 0.998) & 0.998 & \textbf{Fail} \\ \hline
+TC17 & Ham, Safe & \textbf{Phishing} (phishing 0.993, link 0.79) & 0.916 & \textbf{Fail} \\ \hline
+TC18 & Phishing, alert & Phishing, alert at 8 s & 1.000 & Pass \\ \hline
+TC19 & Safe & Safe & 0.249 & Pass \\ \hline
+TC20 & Safe & Safe & 0.000 & Pass \\ \hline
+TC21 & 0.60 & 0.60 & -- & Pass \\ \hline
+TC22 & 0 & 0.00 & -- & Pass \\ \hline
+\end{longtable}
+}
+
+\textbf{Outcome.} 19 of the 22 cases passed and 3 failed. Observations:
+\begin{itemize}
+\item All SMS cases passed, including the two pairs that matter most: the genuine bank OTP message and the bank fraud advisory (TC7, TC8) were not flagged although they contain the words of a scam, and the scam with look-alike characters (TC9) was still flagged, although less strongly (Suspicious, risk 0.637, against Phishing, risk 0.808 for the plain text). The act rule did not fire on the disguised version, which shows that disguised words weaken that rule.
+\item The call cases passed. The scam call raised an alert after 8 seconds; the bank warning scored a peak of 0.249 and stayed Safe. A bank claim from an ordinary number added a behaviour score of 0.60, and the same claim from a 1600-series number added none.
+\item \textbf{Three email cases failed.} The loan offer (TC13) was read as phishing, and the genuine sign-in notice and subscription notice (TC16, TC17) were also called Phishing. These are short, plain messages from an unknown sender with no authentication result, which is what a pasted mail looks like. The email model is trained on full-length mail, and security and billing notices are the type of legitimate mail that sounds most like phishing. The paper's measured false-alarm rate on real legitimate mail is 1.9\% on 2025--26 mail and 4.6\% on an unseen person's mailbox, and the failures above show where those false alarms come from. On Gmail, extra evidence applies: a repeat sender whose mail authenticates and keeps its links on its own domain has its phishing score damped, which cut the false alarms on the unseen mailbox from 4.6\% to 2.5\% without losing phishing. That path was not run for these three authored examples.
+\end{itemize}
+
+The remaining cases of Table~\ref{tab:tc} (TC23 to TC29) are checked by the automated tests of Sections~\ref{sec:ut} and~\ref{sec:it}, as Table~\ref{tab:ftres2} shows.
+
+\begin{table}[H]
+\caption{Functional cases verified by automated checks}
+\label{tab:ftres2}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{1.1cm}|p{8.6cm}|p{4.5cm}|}
+\hline
+\textbf{ID} & \textbf{Evidence} & \textbf{Result} \\ \hline
+TC23 & Failed authentication has a behaviour weight of 0.60, equal to the escalation limit, so it lifts a clean mail to Suspicious and no higher (\texttt{fusion.py}, \texttt{behaviour.py}) & Pass (self-check) \\ \hline
+TC24 & By its code the escalation gate moves Safe mail to Suspicious only, and in the fusion self-check on the CEAS stream spam recall rises from 0.611 to 0.912 & Pass (self-check) \\ \hline
+TC25 & The Gmail ingestion test files each message once, and a message that cannot be parsed is skipped while polling continues & Pass (\texttt{gmail.test.mjs}) \\ \hline
+TC26 & The app manifest requests only the permissions to read and receive SMS; there is no internet permission, so scoring cannot depend on a network & Pass (manifest) \\ \hline
+TC27 & Seven parity tests compare Kotlin results with Python results on fixed messages & Pass (7 of 7) \\ \hline
+TC28 & Seven redaction tests & Pass (7 of 7) \\ \hline
+TC29 & Session tokens are signed and expire; a bad token is rejected & Pass (\texttt{hash.test.mjs}) \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Justification.} The cases were chosen in pairs of a scam and a genuine message with similar words, because a detector's most important property is that it does not cry wolf on ordinary notices. This is also why the failures are reported in full: they show the weakest part of the email model, and it is better that this is found by the team than by a user.
+
+\section{Integration Testing}\label{sec:it}
+Integration tests check that the three programs and the database work together, not only alone.
+
+\begin{table}[H]
+\caption{Integration checks}
+\label{tab:integ}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{3.7cm}|p{6.9cm}|p{3.6cm}|}
+\hline
+\textbf{Interface} & \textbf{What is checked} & \textbf{Result} \\ \hline
+Dashboard, model service and database (Gmail path) & A mailbox poll runs against the real PostgreSQL database with its own test user: messages are sent to the model service, scored and saved, and the same message is not saved twice. A message without a text part gets an error from the model service and is skipped, and polling continues & Passed (\texttt{gmail.test.mjs}) \\ \hline
+Phone and server models & Seven tests give the Kotlin code the same fixed messages that were scored by Python and require the same scores and verdicts. After any retraining the export script rewrites the files that these tests read & Passed (7 of 7) \\ \hline
+Content, links, behaviour and fusion & The CEAS-08 stream is scored through the same fusion function as live traffic: profiles from 1--7 August, test on 8 August & Spam recall 0.611 to 0.912 \\ \hline
+Model service and database & Profiles are saved after scoring and reloaded on the next request & Passed (\texttt{store.py}) \\ \hline
+Thread of messages & Several SMS from one sender raise the risk of the later ones through the same SMS and link models & Passed (\texttt{thread.py}) \\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Justification.} Most real faults sit between components: a field that one side sends and the other does not read, or a result that is computed twice. The Gmail test includes a message that cannot be parsed and requires that it is skipped without stopping the poller, and the parity tests exist because a model exported to Kotlin can quietly give a different answer.
+
+\section{Acceptance Testing}\label{sec:at}
+Acceptance testing asks whether the system does what it was built for. Table~\ref{tab:accept} lists the acceptance criteria that follow from the objectives, the evidence for each, and the outcome.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{1.0cm}|p{5.2cm}|p{5.5cm}|p{2.2cm}|}
+\caption{Acceptance criteria}\label{tab:accept}\\
+\hline \textbf{No.} & \textbf{Criterion} & \textbf{Evidence} & \textbf{Outcome} \\ \hline
+\endfirsthead
+\hline \textbf{No.} & \textbf{Criterion} & \textbf{Evidence} & \textbf{Outcome} \\ \hline
+\endhead
+\hline
+\endfoot
+A1 & One system gives one verdict for email, SMS and calls & TC5, TC14 and TC18 give Phishing on one scam of each type & Met \\ \hline
+A2 & Results are measured only on unseen data & Section~\ref{sec:dataset} and Chapter~8 & Met \\ \hline
+A3 & SMS is checked fully on the phone and nothing leaves it & No internet permission; local database; masked reports & Met \\ \hline
+A4 & Every verdict is explained, and the explanation is faithful & Reasons on every verdict; deletion test in Section~\ref{sec:res-faith} & Met \\ \hline
+A5 & Sender behaviour improves detection & Spam recall 0.611 to 0.912 & Met, at a cost of 8.5\% of cleared legitimate mail sent to Suspicious \\ \hline
+A6 & Smishing recall of at least 0.90 on a different corpus & 0.786 measured & Not met \\ \hline
+A7 & Genuine notices are not called Phishing & TC16 and TC17 fail on a pasted mail from an unknown sender & Partly met \\ \hline
+A8 & The system can be shown to the guide and review panel live & Website, Gmail page and phone app run on the team's machines & At the review \\ \hline
+\end{longtable}
+}
+
+\textbf{Justification.} The criteria come straight from the objectives in Chapter~1. Two of them are not fully met, and they are stated as such. Smishing recall is below target because the held-out corpus uses another country's conventions, and the false alarms on short genuine notices are a known weakness of the email content model that the Gmail path reduces but does not remove.
+
+\section{Summary}
+Unit, functional, integration and acceptance testing were carried out. All automated checks passed, and 19 of 22 functional cases passed. The three failures are all email messages from an unknown sender, and they show where the system must be improved. The next chapter reports the measured results.
+
+%--------------------------------------------------------------------------------------
+}

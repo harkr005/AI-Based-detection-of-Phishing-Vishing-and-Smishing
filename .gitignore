@@ -1,0 +1,27 @@
+# data + papers + trained weights (too large / not code)
+Datasets/
+Dataset(Indian)/
+models/
+papers/
+
+# one person's real inbox: 943 SMS with senders, timestamps, order ids
+# and a UPI handle in them. Redacted of codes and amounts, NOT of who
+# they are about, and this remote is a GitHub repo.
+app-reports/
+
+# python
+__pycache__/
+*.pyc
+
+# run logs and scratch output
+log.txt
+*.log
+*.err
+
+# leftover git dir from the standalone web/ repo (folded into this repo)
+web/.git_backup_createnext/
+
+# per-person Claude Code settings
+.claude/settings.local.json
+
+*.apk

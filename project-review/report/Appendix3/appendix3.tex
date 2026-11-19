@@ -1,0 +1,29 @@
+\chapter*{}                  % Creates the chapter without displaying the title
+\addcontentsline{toc}{chapter}{APPENDIX C - Sustainable Development Goal Addressed}
+% Left-aligned APPENDIX C
+\noindent{\Huge\bfseries APPENDIX C}\\[0.3cm]
+{\Large\bfseries SUSTAINABLE DEVELOPMENT GOAL ADDRESSED}\\[0.3cm]
+
+The project is mapped to three goals at indicator level, as the department's SDG mapping checklist requires. The justification and the evidence of initiation, implementation and impact are given below.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{3.6cm}|p{10.6cm}|}
+\hline \textbf{Goal and indicator} & \textbf{Justification} \\ \hline
+\endhead
+SDG 16, Peace, Justice and Strong Institutions. Indicator 16.4.1, Illicit financial flows & Phishing e-mail, scam SMS and scam calls are among the most common ways money is stolen online. The system warns the person before a link is opened, a code is shared or a payment is made, so the money never leaves the account. \\ \hline
+SDG 8, Decent Work and Economic Growth. Indicator 8.10.2, Adults with an account at a bank or financial institution & People who have only recently started using digital banking and UPI are the main targets of these scams, and one bad experience can push them away. Protecting them helps them keep using their accounts safely. (In the checklist this indicator shares a row with 8.9.2 and 8.10.1; only 8.10.2 is claimed.) \\ \hline
+SDG 17, Partnerships for the Goals. Indicator 17.8.1, Individuals using the Internet & Every verdict comes with reasons in plain language, so people with little technical knowledge can use e-mail, SMS and phone calls more safely. The Android app checks SMS on the phone, works without internet and costs nothing. \\ \hline
+\end{longtable}
+}
+
+\vspace{0.3cm}
+\noindent\textbf{Initiation.} Phishing, smishing and vishing fraud keeps rising in India. The literature survey (Chapter~2) showed that earlier work handles one channel at a time and looks only at the message text, so a new scam wording gets through. The project set out to build one system for all three channels that also checks who the sender is.
+
+\vspace{0.2cm}
+\noindent\textbf{Implementation.} A Python model service, a Next.js website that checks a connected Gmail inbox every 60 seconds and has scan pages for SMS, e-mail and calls, and an Android app that checks every incoming SMS on the phone (Chapters~4 to~6). Links are also checked with Google Safe Browsing.
+
+\vspace{0.2cm}
+\noindent\textbf{Impact (measured).} On data the models never trained on: e-mail phishing precision and recall of 0.990 and 0.986 on a later-in-time split; 86.2\% of phishing caught on 2025--26 mail with 1.9\% false alarms; SMS macro-F1 of 0.859 on a different corpus; spam recall raised from 0.611 to 0.912 by sender behaviour; 96.2\% of scam calls from seven unseen channels caught, with 0.3\% false alarms on real bank calls (Chapter~8).
+
+\vspace{0.2cm}
+\noindent\textbf{Impact (expected).} Fewer people losing money to scam links, OTP requests and fake bank calls, and more trust in digital banking. This has not been measured: the system has not been deployed to real users, so the reduction in actual fraud losses is not known.

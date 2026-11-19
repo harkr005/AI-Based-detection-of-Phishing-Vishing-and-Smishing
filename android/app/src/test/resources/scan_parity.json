@@ -1,0 +1,2346 @@
+{
+ "url_cases": [
+  {
+   "url": "http://sbi-kyc-verify.tk/login",
+   "features": {
+    "host_len": 17.0,
+    "n_dots": 1.0,
+    "n_hyphen": 2.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 2.0,
+    "tld_rare": 1.0,
+    "entropy": 3.616874606,
+    "longest_token": 6.0,
+    "n_lure": 2.0,
+    "n_vowel_ratio": 0.214285714
+   },
+   "verified": false,
+   "score": 0.998183429,
+   "contribs": [
+    0.264462441,
+    -0.298180044,
+    2.061258793,
+    -0.194394082,
+    0.000245788,
+    0.0,
+    0.0,
+    0.0,
+    -0.003516392,
+    -0.355563432,
+    1.242567301,
+    0.154529393,
+    0.073965766,
+    3.173509836,
+    0.470062017
+   ],
+   "named": [
+    "bank/payment lure words in the host",
+    "hyphen-stuffed host",
+    "rare top-level domain"
+   ],
+   "reason": "link looks phishing: bank/payment lure words in the host, hyphen-stuffed host, rare top-level domain"
+  },
+  {
+   "url": "https://hdfcbank.com/statement",
+   "features": {
+    "host_len": 12.0,
+    "n_dots": 1.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 0.0,
+    "entropy": 3.418295834,
+    "longest_token": 8.0,
+    "n_lure": 1.0,
+    "n_vowel_ratio": 0.181818182
+   },
+   "verified": true,
+   "score": 0.0,
+   "contribs": [
+    -0.258308202,
+    -0.50647527,
+    -0.179652214,
+    -0.181918994,
+    0.00285176,
+    0.0,
+    0.0,
+    0.0,
+    -0.000432346,
+    0.208420813,
+    -0.343682796,
+    -0.08516144,
+    0.158832565,
+    0.269126207,
+    0.019496491
+   ],
+   "named": [],
+   "reason": "link looks benign: nothing in the host name stands out"
+  },
+  {
+   "url": "https://net.hdfcbank.com/x",
+   "features": {
+    "host_len": 16.0,
+    "n_dots": 2.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 1.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 0.0,
+    "entropy": 3.625,
+    "longest_token": 8.0,
+    "n_lure": 1.0,
+    "n_vowel_ratio": 0.214285714
+   },
+   "verified": true,
+   "score": 0.0,
+   "contribs": [
+    -0.266517282,
+    1.345438123,
+    -0.137120783,
+    -0.272342294,
+    0.002968852,
+    0.0,
+    0.0,
+    0.0,
+    -0.000377866,
+    0.700510144,
+    -0.283850044,
+    -0.011825199,
+    -0.024846343,
+    0.428345352,
+    0.267060041
+   ],
+   "named": [
+    "many dot-separated parts",
+    "unusual TLD length",
+    "bank/payment lure words in the host"
+   ],
+   "reason": "link looks phishing: many dot-separated parts, unusual TLD length, bank/payment lure words in the host"
+  },
+  {
+   "url": "https://nothdfcbank.com/x",
+   "features": {
+    "host_len": 15.0,
+    "n_dots": 1.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 0.0,
+    "entropy": 3.506890596,
+    "longest_token": 11.0,
+    "n_lure": 1.0,
+    "n_vowel_ratio": 0.214285714
+   },
+   "verified": false,
+   "score": 0.245551363,
+   "contribs": [
+    -0.168525666,
+    -0.570115209,
+    -0.186612502,
+    -0.181945801,
+    -0.003179123,
+    0.0,
+    0.0,
+    0.0,
+    -0.000430896,
+    0.214015484,
+    -0.357160807,
+    -0.04394424,
+    -0.042710528,
+    0.61042124,
+    -0.11236687
+   ],
+   "named": [],
+   "reason": "link looks benign: nothing in the host name stands out"
+  },
+  {
+   "url": "https://hdfcbank.com.evil.tk/login",
+   "features": {
+    "host_len": 20.0,
+    "n_dots": 3.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 2.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 2.0,
+    "tld_rare": 1.0,
+    "entropy": 3.88418372,
+    "longest_token": 8.0,
+    "n_lure": 1.0,
+    "n_vowel_ratio": 0.235294118
+   },
+   "verified": false,
+   "score": 0.892698109,
+   "contribs": [
+    0.268911928,
+    0.226542249,
+    0.009783966,
+    -0.238290012,
+    -0.010213654,
+    0.0,
+    0.0,
+    0.0,
+    -0.000350045,
+    -0.58033675,
+    0.881337345,
+    -0.110955328,
+    0.231562674,
+    1.265991449,
+    0.454543084
+   ],
+   "named": [
+    "bank/payment lure words in the host",
+    "rare top-level domain",
+    "host reads as non-word letters"
+   ],
+   "reason": "link looks phishing: bank/payment lure words in the host, rare top-level domain, host reads as non-word letters"
+  },
+  {
+   "url": "http://192.168.1.4:8080/secure-login/verify",
+   "features": {
+    "host_len": 11.0,
+    "n_dots": 3.0,
+    "n_hyphen": 0.0,
+    "n_digits": 8.0,
+    "digit_ratio": 0.727272727,
+    "n_special": 0.0,
+    "n_subdomain": 2.0,
+    "is_ip": 1.0,
+    "is_punycode": 0.0,
+    "tld_len": 1.0,
+    "tld_rare": 1.0,
+    "entropy": 2.594906618,
+    "longest_token": 3.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.0
+   },
+   "verified": false,
+   "score": 0.999929667,
+   "contribs": [
+    -1.094677567,
+    1.656923652,
+    -0.006039429,
+    7.405890942,
+    0.432524681,
+    0.0,
+    0.0,
+    0.0,
+    -0.000319318,
+    -0.246202677,
+    0.652739823,
+    0.179229543,
+    -0.363054544,
+    -0.006292217,
+    1.231839895
+   ],
+   "named": [
+    "digits in the host",
+    "many dot-separated parts",
+    "host reads as non-word letters"
+   ],
+   "reason": "link looks phishing: digits in the host, many dot-separated parts, host reads as non-word letters"
+  },
+  {
+   "url": "http://xn--80ak6aa92e.com",
+   "features": {
+    "host_len": 18.0,
+    "n_dots": 1.0,
+    "n_hyphen": 2.0,
+    "n_digits": 5.0,
+    "digit_ratio": 0.277777778,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 1.0,
+    "tld_len": 3.0,
+    "tld_rare": 0.0,
+    "entropy": 3.794653474,
+    "longest_token": 10.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.5
+   },
+   "verified": false,
+   "score": 0.99908793,
+   "contribs": [
+    0.257499605,
+    -1.215320945,
+    1.654555082,
+    3.941559315,
+    -0.489796519,
+    0.0,
+    0.0,
+    0.0,
+    2.616287947,
+    0.363184243,
+    -0.412423193,
+    0.674970388,
+    0.481541902,
+    -0.018938433,
+    -0.574383259
+   ],
+   "named": [
+    "digits in the host",
+    "punycode (look-alike) domain",
+    "hyphen-stuffed host"
+   ],
+   "reason": "link looks phishing: digits in the host, punycode (look-alike) domain, hyphen-stuffed host"
+  },
+  {
+   "url": "www.paytm-kyc-update.xyz",
+   "features": {
+    "host_len": 20.0,
+    "n_dots": 1.0,
+    "n_hyphen": 2.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 1.0,
+    "entropy": 3.68418372,
+    "longest_token": 6.0,
+    "n_lure": 3.0,
+    "n_vowel_ratio": 0.235294118
+   },
+   "verified": false,
+   "score": 0.999504805,
+   "contribs": [
+    0.167220801,
+    -0.643201411,
+    2.110477448,
+    -0.188199982,
+    0.002084737,
+    0.0,
+    0.0,
+    0.0,
+    -0.005050418,
+    0.806505024,
+    1.720404625,
+    0.261327654,
+    0.103942864,
+    3.156359196,
+    0.398081094
+   ],
+   "named": [
+    "bank/payment lure words in the host",
+    "hyphen-stuffed host",
+    "rare top-level domain"
+   ],
+   "reason": "link looks phishing: bank/payment lure words in the host, hyphen-stuffed host, rare top-level domain"
+  },
+  {
+   "url": "https://www.google.com",
+   "features": {
+    "host_len": 10.0,
+    "n_dots": 1.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 0.0,
+    "entropy": 2.646439345,
+    "longest_token": 6.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.444444444
+   },
+   "verified": false,
+   "score": 0.177282289,
+   "contribs": [
+    -0.58538276,
+    -0.345566869,
+    -0.036994617,
+    -0.226637214,
+    -0.017977096,
+    0.0,
+    0.0,
+    0.0,
+    -0.000427672,
+    0.156100392,
+    -0.306261569,
+    0.12304502,
+    0.174782157,
+    -0.018804776,
+    -0.17081885
+   ],
+   "named": [],
+   "reason": "link looks benign: nothing in the host name stands out"
+  },
+  {
+   "url": "bit.ly/3xK9qLm",
+   "features": {
+    "host_len": 6.0,
+    "n_dots": 1.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 2.0,
+    "tld_rare": 1.0,
+    "entropy": 2.584962501,
+    "longest_token": 3.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.2
+   },
+   "verified": false,
+   "score": 0.58815527,
+   "contribs": [
+    0.09124545,
+    -0.23454307,
+    -0.098631397,
+    -0.221202955,
+    -0.007685279,
+    0.0,
+    0.0,
+    0.0,
+    -0.000401564,
+    -0.209634244,
+    1.200413942,
+    0.064855658,
+    -0.392919511,
+    -0.004400501,
+    0.449175
+   ],
+   "named": [
+    "rare top-level domain",
+    "host reads as non-word letters",
+    "unusually long host name"
+   ],
+   "reason": "link looks phishing: rare top-level domain, host reads as non-word letters, unusually long host name"
+  },
+  {
+   "url": "http://a.b.com/x/y?z=1",
+   "features": {
+    "host_len": 7.0,
+    "n_dots": 2.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 1.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 0.0,
+    "entropy": 2.521640636,
+    "longest_token": 3.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.4
+   },
+   "verified": false,
+   "score": 0.193046391,
+   "contribs": [
+    -0.496051818,
+    1.198328137,
+    -0.18628788,
+    -0.340680629,
+    -0.020340262,
+    0.0,
+    0.0,
+    0.0,
+    -0.000389061,
+    0.27964741,
+    -0.25366506,
+    0.101204842,
+    -1.240005374,
+    -0.018126436,
+    -0.17404373
+   ],
+   "named": [],
+   "reason": "link looks benign: nothing in the host name stands out"
+  },
+  {
+   "url": "https://amazon.in/orders",
+   "features": {
+    "host_len": 9.0,
+    "n_dots": 1.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 2.0,
+    "tld_rare": 0.0,
+    "entropy": 2.725480557,
+    "longest_token": 6.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.5
+   },
+   "verified": true,
+   "score": 0.0,
+   "contribs": [
+    -0.665966809,
+    -0.165837601,
+    -0.003337477,
+    -0.220999554,
+    -0.003056075,
+    0.0,
+    0.0,
+    0.0,
+    -0.000429793,
+    -0.018078061,
+    -0.147021875,
+    -0.113920972,
+    0.303644389,
+    -0.016927114,
+    0.097668193
+   ],
+   "named": [],
+   "reason": "link looks benign: nothing in the host name stands out"
+  },
+  {
+   "url": "http://secure-login-verify-account-update.confirm-bank.top/a",
+   "features": {
+    "host_len": 51.0,
+    "n_dots": 2.0,
+    "n_hyphen": 5.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 1.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 1.0,
+    "entropy": 4.233521852,
+    "longest_token": 7.0,
+    "n_lure": 7.0,
+    "n_vowel_ratio": 0.386363636
+   },
+   "verified": false,
+   "score": 0.999998689,
+   "contribs": [
+    4.787467957,
+    1.772767186,
+    1.700358629,
+    -0.213613406,
+    -0.010334602,
+    0.0,
+    0.0,
+    0.0,
+    -0.00194476,
+    0.853503287,
+    1.393785477,
+    0.906755269,
+    0.00895069,
+    3.062072992,
+    -0.426125973
+   ],
+   "named": [
+    "unusually long host name",
+    "bank/payment lure words in the host",
+    "many dot-separated parts"
+   ],
+   "reason": "link looks phishing: unusually long host name, bank/payment lure words in the host, many dot-separated parts"
+  },
+  {
+   "url": "https://irctc.co.in",
+   "features": {
+    "host_len": 11.0,
+    "n_dots": 2.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 1.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 2.0,
+    "tld_rare": 0.0,
+    "entropy": 2.663532755,
+    "longest_token": 5.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.333333333
+   },
+   "verified": true,
+   "score": 0.0,
+   "contribs": [
+    -1.369275689,
+    0.303789943,
+    0.017269382,
+    -0.364982605,
+    -0.002664668,
+    0.0,
+    0.0,
+    0.0,
+    -0.000387114,
+    -0.752071798,
+    -0.172110364,
+    0.038805403,
+    0.552010953,
+    -0.02241892,
+    -0.063016064
+   ],
+   "named": [],
+   "reason": "link looks benign: nothing in the host name stands out"
+  },
+  {
+   "url": "flipkart.com",
+   "features": {
+    "host_len": 12.0,
+    "n_dots": 1.0,
+    "n_hyphen": 0.0,
+    "n_digits": 0.0,
+    "digit_ratio": 0.0,
+    "n_special": 0.0,
+    "n_subdomain": 0.0,
+    "is_ip": 0.0,
+    "is_punycode": 0.0,
+    "tld_len": 3.0,
+    "tld_rare": 0.0,
+    "entropy": 3.584962501,
+    "longest_token": 8.0,
+    "n_lure": 0.0,
+    "n_vowel_ratio": 0.272727273
+   },
+   "verified": true,
+   "score": 0.0,
+   "contribs": [
+    -0.215328306,
+    -0.472459733,
+    -0.080230318,
+    -0.204094186,
+    -0.000881353,
+    0.0,
+    0.0,
+    0.0,
+    -0.000438812,
+    0.197882742,
+    -0.376446605,
+    0.043629844,
+    0.081686094,
+    -0.012203854,
+    0.173574015
+   ],
+   "named": [],
+   "reason": "link looks benign: nothing in the host name stands out"
+  }
+ ],
+ "behaviour_cases": [
+  {
+   "sender": "AX-ICICIT-S",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": true,
+   "hour": null,
+   "burst": 0,
+   "sid": "AX-ICICIT-S",
+   "entity": "ICICIT",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "AX-ICICIT-S",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": true,
+   "hour": null,
+   "burst": 0,
+   "sid": "AX-ICICIT-S",
+   "entity": "ICICIT",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "DM-AXISBK-T",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 3,
+   "burst": 1,
+   "sid": "DM-AXISBK-T",
+   "entity": "AXISBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "DM-AXISBK-T",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 3,
+   "burst": 1,
+   "sid": "DM-AXISBK-T",
+   "entity": "AXISBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "VM-HDFCBK-S",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": true,
+   "hour": 14,
+   "burst": 6,
+   "sid": "VM-HDFCBK-S",
+   "entity": "HDFCBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.1,
+   "tags": [
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "VM-HDFCBK-S",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": true,
+   "hour": 14,
+   "burst": 6,
+   "sid": "VM-HDFCBK-S",
+   "entity": "HDFCBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.1,
+   "tags": [
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "JD-ATMSBI-T",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 23,
+   "burst": 0,
+   "sid": "JD-ATMSBI-T",
+   "entity": "ATMSBI",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "JD-ATMSBI-T",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 23,
+   "burst": 0,
+   "sid": "JD-ATMSBI-T",
+   "entity": "ATMSBI",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": true,
+   "hour": null,
+   "burst": 1,
+   "sid": "",
+   "entity": "",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 1.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.17,
+   "tags": [
+    "sender ID does not follow the DLT header format"
+   ]
+  },
+  {
+   "sender": "",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": true,
+   "hour": null,
+   "burst": 1,
+   "sid": "",
+   "entity": "",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 1.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.17,
+   "tags": [
+    "sender ID does not follow the DLT header format"
+   ]
+  },
+  {
+   "sender": "VM-HDFCBK",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 3,
+   "burst": 6,
+   "sid": "VM-HDFCBK",
+   "entity": "HDFCBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "VM-HDFCBK",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 3,
+   "burst": 6,
+   "sid": "VM-HDFCBK",
+   "entity": "HDFCBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "AD-AXISBK-S",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": true,
+   "hour": 14,
+   "burst": 0,
+   "sid": "AD-AXISBK-S",
+   "entity": "AXISBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "AD-AXISBK-S",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": true,
+   "hour": 14,
+   "burst": 0,
+   "sid": "AD-AXISBK-S",
+   "entity": "AXISBK",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "HDFCBK",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 23,
+   "burst": 1,
+   "sid": "HDFCBK",
+   "entity": "HDFCBK",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "HDFCBK",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 23,
+   "burst": 1,
+   "sid": "HDFCBK",
+   "entity": "HDFCBK",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "VM-HDFCBNK",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": true,
+   "hour": null,
+   "burst": 6,
+   "sid": "VM-HDFCBNK",
+   "entity": "HDFCBNK",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.1,
+   "tags": [
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "VM-HDFCBNK",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": true,
+   "hour": null,
+   "burst": 6,
+   "sid": "VM-HDFCBNK",
+   "entity": "HDFCBNK",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.1,
+   "tags": [
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "AX-KYCUPD",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 3,
+   "burst": 0,
+   "sid": "AX-KYCUPD",
+   "entity": "KYCUPD",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "AX-KYCUPD",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 3,
+   "burst": 0,
+   "sid": "AX-KYCUPD",
+   "entity": "KYCUPD",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "SUBWAY",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": true,
+   "hour": 14,
+   "burst": 1,
+   "sid": "SUBWAY",
+   "entity": "SUBWAY",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.02,
+   "tags": []
+  },
+  {
+   "sender": "SUBWAY",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": true,
+   "hour": 14,
+   "burst": 1,
+   "sid": "SUBWAY",
+   "entity": "SUBWAY",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.02,
+   "tags": []
+  },
+  {
+   "sender": "Zepto",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 23,
+   "burst": 6,
+   "sid": "ZEPTO",
+   "entity": "ZEPTO",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "Zepto",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 23,
+   "burst": 6,
+   "sid": "ZEPTO",
+   "entity": "ZEPTO",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "VM-2204",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": true,
+   "hour": null,
+   "burst": 0,
+   "sid": "VM-2204",
+   "entity": "2204",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "VM-2204",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": true,
+   "hour": null,
+   "burst": 0,
+   "sid": "VM-2204",
+   "entity": "2204",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "BZ-CBSSBI",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 3,
+   "burst": 1,
+   "sid": "BZ-CBSSBI",
+   "entity": "CBSSBI",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "BZ-CBSSBI",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 3,
+   "burst": 1,
+   "sid": "BZ-CBSSBI",
+   "entity": "CBSSBI",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "9876543210",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": true,
+   "hour": 14,
+   "burst": 6,
+   "sid": "9876543210",
+   "entity": "9876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 1.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.7,
+   "tags": [
+    "personal number claiming to be an institution",
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "9876543210",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": true,
+   "hour": 14,
+   "burst": 6,
+   "sid": "9876543210",
+   "entity": "9876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.1,
+   "tags": [
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "+919876543210",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 23,
+   "burst": 0,
+   "sid": "+919876543210",
+   "entity": "+919876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 1.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.8,
+   "tags": [
+    "personal number claiming to be an institution",
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "+919876543210",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 23,
+   "burst": 0,
+   "sid": "+919876543210",
+   "entity": "+919876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "+91 98765 43210",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": true,
+   "hour": null,
+   "burst": 1,
+   "sid": "+919876543210",
+   "entity": "+919876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 1.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.62,
+   "tags": [
+    "personal number claiming to be an institution"
+   ]
+  },
+  {
+   "sender": "+91 98765 43210",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": true,
+   "hour": null,
+   "burst": 1,
+   "sid": "+919876543210",
+   "entity": "+919876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.02,
+   "tags": []
+  },
+  {
+   "sender": "(987) 654-3210",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 3,
+   "burst": 6,
+   "sid": "9876543210",
+   "entity": "9876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 1.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.8,
+   "tags": [
+    "personal number claiming to be an institution",
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "(987) 654-3210",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 3,
+   "burst": 6,
+   "sid": "9876543210",
+   "entity": "9876543210",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "0123456789",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": true,
+   "hour": 14,
+   "burst": 0,
+   "sid": "0123456789",
+   "entity": "0123456789",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "0123456789",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": true,
+   "hour": 14,
+   "burst": 0,
+   "sid": "0123456789",
+   "entity": "0123456789",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 1.0,
+    "burst_1h": 0.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.35,
+   "tags": [
+    "link in a first-ever message from this sender",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "12345",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 23,
+   "burst": 1,
+   "sid": "12345",
+   "entity": "12345",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "12345",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": false,
+   "hour": 23,
+   "burst": 1,
+   "sid": "12345",
+   "entity": "12345",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 1.0
+   },
+   "score": 0.12,
+   "tags": [
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "DM-654321",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": true,
+   "hour": null,
+   "burst": 6,
+   "sid": "DM-654321",
+   "entity": "654321",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.1,
+   "tags": [
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "DM-654321",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": true,
+   "hour": null,
+   "burst": 6,
+   "sid": "DM-654321",
+   "entity": "654321",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 0.0
+   },
+   "score": 0.1,
+   "tags": [
+    "burst of messages from this sender"
+   ]
+  },
+  {
+   "sender": "VK-ICICIB",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 3,
+   "burst": 0,
+   "sid": "VK-ICICIB",
+   "entity": "ICICIB",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "VK-ICICIB",
+   "text": "Running late, see you at 8",
+   "first_contact": true,
+   "has_url": false,
+   "hour": 3,
+   "burst": 0,
+   "sid": "VK-ICICIB",
+   "entity": "ICICIB",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 1.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "delivered at an odd hour",
+    "no prior history with this sender"
+   ]
+  },
+  {
+   "sender": "TX-SBIINB-T",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": false,
+   "has_url": true,
+   "hour": 14,
+   "burst": 1,
+   "sid": "TX-SBIINB-T",
+   "entity": "SBIINB",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.02,
+   "tags": []
+  },
+  {
+   "sender": "TX-SBIINB-T",
+   "text": "Running late, see you at 8",
+   "first_contact": false,
+   "has_url": true,
+   "hour": 14,
+   "burst": 1,
+   "sid": "TX-SBIINB-T",
+   "entity": "SBIINB",
+   "registered": true,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 0.2,
+    "odd_hour": 0.0
+   },
+   "score": 0.02,
+   "tags": []
+  },
+  {
+   "sender": "unknown",
+   "text": "Your KYC will be blocked, verify now",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 23,
+   "burst": 6,
+   "sid": "UNKNOWN",
+   "entity": "UNKNOWN",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  },
+  {
+   "sender": "unknown",
+   "text": "Running late, see you at 8",
+   "first_contact": null,
+   "has_url": false,
+   "hour": 23,
+   "burst": 6,
+   "sid": "UNKNOWN",
+   "entity": "UNKNOWN",
+   "registered": false,
+   "features": {
+    "personal_number_as_institution": 0.0,
+    "non_dlt_header": 0.0,
+    "first_contact": 0.0,
+    "url_first_contact": 0.0,
+    "burst_1h": 1.0,
+    "odd_hour": 1.0
+   },
+   "score": 0.2,
+   "tags": [
+    "burst of messages from this sender",
+    "delivered at an odd hour"
+   ]
+  }
+ ],
+ "evidence_cases": [
+  {
+   "text": "",
+   "evidence": 0.0
+  },
+  {
+   "text": " ",
+   "evidence": 0.0
+  },
+  {
+   "text": "hi",
+   "evidence": 0.0
+  },
+  {
+   "text": "a b c",
+   "evidence": 0.0
+  },
+  {
+   "text": "ok",
+   "evidence": 0.0
+  },
+  {
+   "text": "Hey, are we still meeting at 6 for dinner?",
+   "evidence": 0.0
+  },
+  {
+   "text": "Your SBI KYC is expired. Update now at http://sbi-kyc-verify.tk or account blocked",
+   "evidence": 1.0
+  },
+  {
+   "text": "URGENT!! Your a/c will be SUSPENDED. Call 9876543210 immediately",
+   "evidence": 0.0
+  },
+  {
+   "text": "Congratulations!!! You have won Rs 25,00,000 in the KBC lottery draw",
+   "evidence": 0.0
+  },
+  {
+   "text": "481920 is your OTP for a transfer of Rs 25,000 from A/c 912345678901",
+   "evidence": 0.0
+  },
+  {
+   "text": "Dear customer [account], [amount] debited. Not you? [link]",
+   "evidence": 0.0
+  },
+  {
+   "text": "Yоur аccоunt is blоcked",
+   "evidence": 0.0
+  },
+  {
+   "text": "Your acc​ount is bl‌ocked﻿",
+   "evidence": 0.0
+  },
+  {
+   "text": "ＵＰＤＡＴＥ your KYC ①",
+   "evidence": 0.0
+  },
+  {
+   "text": "Y0ur acc0unt is bl0cked - ver1fy n0w",
+   "evidence": 0.0
+  },
+  {
+   "text": "K Y C  update\t\tneeded\nnow",
+   "evidence": 0.0
+  },
+  {
+   "text": "आपका खाता बंद हो जाएगा",
+   "evidence": 0.0
+  },
+  {
+   "text": "🚨🚨🚨",
+   "evidence": 0.0
+  },
+  {
+   "text": "zzzzzzzzzzzz",
+   "evidence": 0.0
+  },
+  {
+   "text": "Click http://bit.ly/3xK9qLm to claim",
+   "evidence": 0.0
+  },
+  {
+   "text": "Please share the OTP you received to complete the KYC",
+   "evidence": 0.65
+  },
+  {
+   "text": "Never share your OTP with anyone, not even bank staff",
+   "evidence": 0.0
+  },
+  {
+   "text": "We will never ask for your PIN or CVV over a call",
+   "evidence": 0.0
+  },
+  {
+   "text": "Your account will be blocked within 2 hours",
+   "evidence": 0.45
+  },
+  {
+   "text": "Install AnyDesk and share your screen with the officer",
+   "evidence": 0.65
+  },
+  {
+   "text": "Transfer 50000 rupees to this account immediately",
+   "evidence": 0.0
+  },
+  {
+   "text": "Do not tell anyone about this case, it is confidential",
+   "evidence": 0.45
+  },
+  {
+   "text": "Scan this QR code to receive your refund",
+   "evidence": 0.45
+  },
+  {
+   "text": "Your OTP is 481920. Do not share it with anyone.",
+   "evidence": 0.0
+  }
+ ],
+ "scan_cases": [
+  {
+   "sender": "VM-HDFCBK",
+   "text": "Your a/c is debited by Rs 2,500. Not you? Call 18002026161",
+   "hour": 9,
+   "first_contact": true,
+   "expected": {
+    "verdict": "SAFE",
+    "risk": 0.029,
+    "confidence": 1.0,
+    "entropy": 0.001,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.0,
+     "behaviour": 0.1
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "ham - driven by \"a/c\", \"debited\", \"you\"; no prior history with this sender; message contains no request, threat or payment demand",
+    "channel": "sms",
+    "label": "ham",
+    "label_prob": 1.0,
+    "evidence": 0,
+    "terms": [
+     "a/c",
+     "debited",
+     "you"
+    ],
+    "classes": {
+     "ham": 1.0,
+     "spam": 0.0,
+     "smishing": 0.0
+    },
+    "links": []
+   }
+  },
+  {
+   "sender": "9876543210",
+   "text": "Your SBI KYC is expired. Update now at http://sbi-kyc-verify.tk",
+   "hour": 2,
+   "first_contact": false,
+   "expected": {
+    "verdict": "PHISHING",
+    "risk": 0.92,
+    "confidence": 0.961,
+    "entropy": 0.167,
+    "weights": {
+     "nlp": 0.5,
+     "url": 0.3,
+     "behaviour": 0.2
+    },
+    "parts": {
+     "nlp": 0.961,
+     "url": 0.998,
+     "behaviour": 0.7
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "smishing - driven by \"KYC\", \"Update\", \"http://sbi-kyc-verify.tk\"; link looks phishing: bank/payment lure words in the host, hyphen-stuffed host, rare top-level domain; personal number claiming to be an institution; delivered at an odd hour",
+    "channel": "sms",
+    "label": "smishing",
+    "label_prob": 0.961,
+    "evidence": 0.65,
+    "terms": [
+     "KYC",
+     "Update",
+     "http://sbi-kyc-verify.tk"
+    ],
+    "classes": {
+     "ham": 0.008,
+     "spam": 0.03,
+     "smishing": 0.961
+    },
+    "links": [
+     {
+      "url": "http://sbi-kyc-verify.tk",
+      "score": 0.998,
+      "why": [
+       "bank/payment lure words in the host",
+       "hyphen-stuffed host",
+       "rare top-level domain"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "sender": "9876543210",
+   "text": "Mum is in hospital, please send Rs 15,000 to account 445566778899",
+   "hour": 23,
+   "first_contact": true,
+   "expected": {
+    "verdict": "SUSPICIOUS",
+    "risk": 0.33,
+    "confidence": 0.819,
+    "entropy": 0.517,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.141,
+     "behaviour": 0.8
+    },
+    "escalated": true,
+    "routed": false,
+    "reason": "ham - driven by \"is\", \"hospital\", \"445566778899\"; personal number claiming to be an institution; delivered at an odd hour; no prior history with this sender; content looks ordinary but the sender does not",
+    "channel": "sms",
+    "label": "ham",
+    "label_prob": 0.819,
+    "evidence": 1.0,
+    "terms": [
+     "is",
+     "hospital",
+     "445566778899"
+    ],
+    "classes": {
+     "ham": 0.819,
+     "spam": 0.04,
+     "smishing": 0.141
+    },
+    "links": []
+   }
+  },
+  {
+   "sender": "AD-SWIGGY-S",
+   "text": "Your order is on the way, arriving in 12 minutes",
+   "hour": 14,
+   "first_contact": false,
+   "expected": {
+    "verdict": "SAFE",
+    "risk": 0.003,
+    "confidence": 0.665,
+    "entropy": 0.598,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.004,
+     "behaviour": 0.0
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "ham - driven by \"Your\", \"is\", \"the\"; message contains no request, threat or payment demand",
+    "channel": "sms",
+    "label": "ham",
+    "label_prob": 0.662,
+    "evidence": 0,
+    "terms": [
+     "Your",
+     "is",
+     "the"
+    ],
+    "classes": {
+     "ham": 0.665,
+     "spam": 0.332,
+     "smishing": 0.004
+    },
+    "links": []
+   }
+  },
+  {
+   "sender": "VM-HDFCBK",
+   "text": "Never share your OTP, PIN or CVV with anyone",
+   "hour": 9,
+   "first_contact": true,
+   "expected": {
+    "verdict": "SAFE",
+    "risk": 0.03,
+    "confidence": 0.975,
+    "entropy": 0.112,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.001,
+     "behaviour": 0.1
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "ham - driven by \"share\", \"OTP\", \"PIN\"; no prior history with this sender; message contains no request, threat or payment demand",
+    "channel": "sms",
+    "label": "ham",
+    "label_prob": 0.974,
+    "evidence": 0,
+    "terms": [
+     "share",
+     "OTP",
+     "PIN"
+    ],
+    "classes": {
+     "ham": 0.975,
+     "spam": 0.024,
+     "smishing": 0.001
+    },
+    "links": []
+   }
+  },
+  {
+   "sender": "AX-KYCUPD",
+   "text": "URGENT: KYC pending. Click https://kyc-verify.paytm.login.tk now",
+   "hour": 2,
+   "first_contact": false,
+   "expected": {
+    "verdict": "PHISHING",
+    "risk": 0.713,
+    "confidence": 0.787,
+    "entropy": 0.545,
+    "weights": {
+     "nlp": 0.5,
+     "url": 0.3,
+     "behaviour": 0.2
+    },
+    "parts": {
+     "nlp": 0.787,
+     "url": 1.0,
+     "behaviour": 0.1
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "smishing - driven by \"URGENT\", \"KYC\", \"pending\"; link looks phishing: bank/payment lure words in the host, unusually long host name, many dot-separated parts; delivered at an odd hour; message contains no request, threat or payment demand",
+    "channel": "sms",
+    "label": "smishing",
+    "label_prob": 0.881,
+    "evidence": 0,
+    "terms": [
+     "URGENT",
+     "KYC",
+     "pending"
+    ],
+    "classes": {
+     "ham": 0.027,
+     "spam": 0.186,
+     "smishing": 0.787
+    },
+    "links": [
+     {
+      "url": "https://kyc-verify.paytm.login.tk",
+      "score": 1.0,
+      "why": [
+       "bank/payment lure words in the host",
+       "unusually long host name",
+       "many dot-separated parts"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "sender": "+919812345678",
+   "text": "Congratulations! You won Rs 25,00,000. Send processing fee",
+   "hour": 23,
+   "first_contact": true,
+   "expected": {
+    "verdict": "PHISHING",
+    "risk": 0.712,
+    "confidence": 0.916,
+    "entropy": 0.294,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.916,
+     "behaviour": 0.2
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "smishing - driven by \"Congratulations\", \"Rs\", \"25,00,000\"; delivered at an odd hour; no prior history with this sender",
+    "channel": "sms",
+    "label": "smishing",
+    "label_prob": 0.916,
+    "evidence": 0.45,
+    "terms": [
+     "Congratulations",
+     "Rs",
+     "25,00,000"
+    ],
+    "classes": {
+     "ham": 0.072,
+     "spam": 0.012,
+     "smishing": 0.916
+    },
+    "links": []
+   }
+  },
+  {
+   "sender": "SUBWAY",
+   "text": "Buy one get one free on all subs this weekend",
+   "hour": 14,
+   "first_contact": false,
+   "expected": {
+    "verdict": "SAFE",
+    "risk": 0.0,
+    "confidence": 0.99,
+    "entropy": 0.051,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.0,
+     "behaviour": 0.0
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "spam - driven by \"free\", \"subs\", \"weekend\"; message contains no request, threat or payment demand",
+    "channel": "sms",
+    "label": "spam",
+    "label_prob": 0.99,
+    "evidence": 0,
+    "terms": [
+     "free",
+     "subs",
+     "weekend"
+    ],
+    "classes": {
+     "ham": 0.01,
+     "spam": 0.99,
+     "smishing": 0.0
+    },
+    "links": []
+   }
+  },
+  {
+   "sender": "unknown",
+   "text": "hi",
+   "hour": 9,
+   "first_contact": true,
+   "expected": {
+    "verdict": "SAFE",
+    "risk": 0.029,
+    "confidence": 0.995,
+    "entropy": 0.033,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.001,
+     "behaviour": 0.1
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "ham - driven by \"hi\"; no prior history with this sender; message contains no request, threat or payment demand",
+    "channel": "sms",
+    "label": "ham",
+    "label_prob": 0.993,
+    "evidence": 0,
+    "terms": [
+     "hi"
+    ],
+    "classes": {
+     "ham": 0.995,
+     "spam": 0.004,
+     "smishing": 0.001
+    },
+    "links": []
+   }
+  },
+  {
+   "sender": "VK-ICICIB",
+   "text": "Dear customer, your account is blocked. Verify at http://icici-kyc.top",
+   "hour": 2,
+   "first_contact": false,
+   "expected": {
+    "verdict": "PHISHING",
+    "risk": 0.801,
+    "confidence": 0.993,
+    "entropy": 0.043,
+    "weights": {
+     "nlp": 0.5,
+     "url": 0.3,
+     "behaviour": 0.2
+    },
+    "parts": {
+     "nlp": 0.993,
+     "url": 0.949,
+     "behaviour": 0.1
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "smishing - driven by \"customer\", \"Verify\", \"http://icici-kyc.top\"; link looks phishing: rare top-level domain, hyphen-stuffed host, bank/payment lure words in the host; delivered at an odd hour",
+    "channel": "sms",
+    "label": "smishing",
+    "label_prob": 0.993,
+    "evidence": 1.0,
+    "terms": [
+     "customer",
+     "Verify",
+     "http://icici-kyc.top"
+    ],
+    "classes": {
+     "ham": 0.006,
+     "spam": 0.001,
+     "smishing": 0.993
+    },
+    "links": [
+     {
+      "url": "http://icici-kyc.top",
+      "score": 0.949,
+      "why": [
+       "rare top-level domain",
+       "hyphen-stuffed host",
+       "bank/payment lure words in the host"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "sender": "VM-HDFCBK",
+   "text": "Dear Customer, your KYC verification is complete. No action needed.",
+   "hour": 23,
+   "first_contact": true,
+   "expected": {
+    "verdict": "PHISHING",
+    "risk": 0.712,
+    "confidence": 0.917,
+    "entropy": 0.269,
+    "weights": {
+     "nlp": 0.7142857142857143,
+     "behaviour": 0.28571428571428575
+    },
+    "parts": {
+     "nlp": 0.917,
+     "behaviour": 0.2
+    },
+    "escalated": false,
+    "routed": false,
+    "reason": "smishing - driven by \"Customer\", \"KYC\", \"complete\"; delivered at an odd hour; no prior history with this sender; message contains no request, threat or payment demand",
+    "channel": "sms",
+    "label": "smishing",
+    "label_prob": 0.957,
+    "evidence": 0,
+    "terms": [
+     "Customer",
+     "KYC",
+     "complete"
+    ],
+    "classes": {
+     "ham": 0.081,
+     "spam": 0.002,
+     "smishing": 0.917
+    },
+    "links": []
+   }
+  }
+ ]
+}

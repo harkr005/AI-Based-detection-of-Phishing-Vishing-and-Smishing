@@ -1,0 +1,41 @@
+\chapter*{}                  % Creates the chapter without displaying the title
+\addcontentsline{toc}{chapter}{APPENDIX B - Complex Engineering Problem}
+% Left-aligned APPENDIX B
+\noindent{\Huge\bfseries APPENDIX B}\\[0.3cm]
+{\Large\bfseries COMPLEX ENGINEERING PROBLEM}\\[0.3cm]
+
+A problem qualifies as a complex engineering problem when characteristic WP1 is present and at least two more of WP2 to WP7 are also present. This project shows all seven.
+
+{\small\setstretch{1.05}
+\begin{longtable}{|p{2.6cm}|p{9.2cm}|p{2.4cm}|}
+\hline \textbf{Characteristic} & \textbf{How it shows in the project} & \textbf{Chapters} \\ \hline
+\endhead
+WP1 Depth of knowledge (compulsory) & Transformers (DistilBERT), speech recognition (Whisper), voice anti-spoofing (wav2vec2), boosted trees (XGBoost) with exact feature attribution, e-mail authentication (SPF, DKIM, DMARC), and bootstrap statistics. These go beyond routine coursework. & 2, 4, 5 \\ \hline
+WP2 Conflicting requirements & Catch rate against false alarms against speed against privacy. For example, a public-only SMS vocabulary costs 0.010 of macro-F1 but keeps private text off the phone, and the behaviour gate raises spam recall from 0.611 to 0.912 at the cost of 8.5\% of cleared legitimate mail sent to Suspicious. & 5, 8 \\ \hline
+WP3 Depth of analysis & No ready-made three-channel tool exists. SVM, naive Bayes, logistic regression, MobileBERT and an isolation forest were compared before the design was chosen, and each choice is justified by a measurement. & 5, 8 \\ \hline
+WP4 Familiarity of issues & The literature survey shows no earlier system that joins the three channels with sender behaviour. & 1, 2 \\ \hline
+WP5 Codes and standards & SPF, DKIM and DMARC (RFC 7208, RFC 6376, RFC 7489), the TRAI sender registry rules (TCCCPR 2018) and the DPDP Act 2023. & 3, 4, 5 \\ \hline
+WP6 Stakeholders & Users, banks, the telecom regulator and mail providers. Privacy needs led to the on-phone SMS check, and the regulator's rules led to the sender and caller-number checks. & 1, 3 \\ \hline
+WP7 Interdependence & The model service, website, phone app and database depend on each other and were tested together: phone and server parity tests, and a Gmail end-to-end test. & 4, 7 \\ \hline
+\end{longtable}
+}
+
+\noindent\textbf{Total WPs present (including WP1): 7. Qualifies as a complex engineering problem: Yes.}
+
+\vspace{0.4cm}
+\noindent\textbf{\large Knowledge profile (WK1 to WK9)}\\[0.2cm]
+{\small\setstretch{1.05}
+\begin{longtable}{|p{1.1cm}|p{3.9cm}|p{6.7cm}|p{2.2cm}|}
+\hline \textbf{ID} & \textbf{Knowledge area} & \textbf{How it was used} & \textbf{Chapters} \\ \hline
+\endhead
+WK1 & Natural and social sciences & Persuasion principles from social psychology (authority, urgency, scarcity, fear, reward) used to word explanations; speech signal basics for the voice models & 4, 5 \\ \hline
+WK2 & Mathematics, data science, computing & Probability, entropy, weighted fusion, bootstrap and Wilson intervals, ROC and precision--recall analysis & 5, 6, 8 \\ \hline
+WK3 & Engineering fundamentals & Pipeline design, data flow, abstention, data minimisation & 4, 5 \\ \hline
+WK4 & Engineering specialist knowledge & Security and information-science topics: phishing, e-mail authentication, anti-spoofing, secure sessions and encryption & 4, 5 \\ \hline
+WK5 & Sustainable design and resource use & Small models that run on a phone CPU, with no generative model at inference time; the whole system runs on one ordinary computer & 4, 8 \\ \hline
+WK6 & Engineering practice and technology & PyTorch, scikit-learn, XGBoost, FastAPI, Next.js, PostgreSQL, Kotlin and Room, Git, parity tests & 3, 4, 6 \\ \hline
+WK7 & Engineering in society & Protecting first-time digital users, privacy of messages, the DPDP Act & 1, 4, 8 \\ \hline
+WK8 & Research literacy and critical thinking & Survey of recent work, pre-registered pass or fail rules, ablations, the catalogue of thirteen corpus artifacts & 2, 6, 8 \\ \hline
+WK9 & Ethics and inclusive behaviour & Consent for the private mailboxes and inbox, no message text in logs or reports, private weights not released & 3, 4, 8 \\ \hline
+\end{longtable}
+}

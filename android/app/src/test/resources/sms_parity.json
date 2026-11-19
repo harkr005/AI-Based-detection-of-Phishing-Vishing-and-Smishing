@@ -1,0 +1,676 @@
+{
+ "labels": [
+  "ham",
+  "spam",
+  "smishing"
+ ],
+ "cases": [
+  {
+   "text": "",
+   "probs": [
+    0.943693862,
+    0.039198436,
+    0.017107702
+   ],
+   "reason": "empty message",
+   "terms": []
+  },
+  {
+   "text": " ",
+   "probs": [
+    0.943693862,
+    0.039198436,
+    0.017107702
+   ],
+   "reason": "empty message",
+   "terms": []
+  },
+  {
+   "text": "hi",
+   "probs": [
+    0.993456453,
+    0.004411682,
+    0.002131865
+   ],
+   "reason": "ham - driven by \"hi\"",
+   "terms": [
+    "hi"
+   ]
+  },
+  {
+   "text": "a b c",
+   "probs": [
+    0.825078536,
+    0.139001579,
+    0.035919885
+   ],
+   "reason": "ham, no single word decides it",
+   "terms": []
+  },
+  {
+   "text": "ok",
+   "probs": [
+    0.997155208,
+    0.001833655,
+    0.001011136
+   ],
+   "reason": "ham - driven by \"ok\"",
+   "terms": [
+    "ok"
+   ]
+  },
+  {
+   "text": "Hey, are we still meeting at 6 for dinner?",
+   "probs": [
+    0.996507725,
+    0.002368695,
+    0.00112358
+   ],
+   "reason": "ham - driven by \"meeting\", \"for\", \"dinner\"",
+   "terms": [
+    "meeting",
+    "for",
+    "dinner"
+   ]
+  },
+  {
+   "text": "Your SBI KYC is expired. Update now at http://sbi-kyc-verify.tk or account blocked",
+   "probs": [
+    0.005861353,
+    0.007791906,
+    0.986346741
+   ],
+   "reason": "smishing - driven by \"Update\", \"http://sbi-kyc-verify.tk\", \"account\"",
+   "terms": [
+    "Update",
+    "http://sbi-kyc-verify.tk",
+    "account"
+   ]
+  },
+  {
+   "text": "URGENT!! Your a/c will be SUSPENDED. Call 9876543210 immediately",
+   "probs": [
+    0.234316799,
+    0.001919863,
+    0.763763338
+   ],
+   "reason": "smishing - driven by \"URGENT\", \"SUSPENDED\", \"immediately\"",
+   "terms": [
+    "URGENT",
+    "SUSPENDED",
+    "immediately"
+   ]
+  },
+  {
+   "text": "Congratulations!!! You have won Rs 25,00,000 in the KBC lottery draw",
+   "probs": [
+    0.014796944,
+    0.002301668,
+    0.982901388
+   ],
+   "reason": "smishing - driven by \"Congratulations\", \"Rs\", \"25,00,000\"",
+   "terms": [
+    "Congratulations",
+    "Rs",
+    "25,00,000"
+   ]
+  },
+  {
+   "text": "481920 is your OTP for a transfer of Rs 25,000 from A/c 912345678901",
+   "probs": [
+    0.988504461,
+    0.002028466,
+    0.009467073
+   ],
+   "reason": "ham - driven by \"OTP\", \"A/c\", \"912345678901\"",
+   "terms": [
+    "OTP",
+    "A/c",
+    "912345678901"
+   ]
+  },
+  {
+   "text": "Dear customer [account], [amount] debited. Not you? [link]",
+   "probs": [
+    0.973043131,
+    0.00030545,
+    0.026651419
+   ],
+   "reason": "ham - driven by \"[amount]\", \"debited\", \"you\"",
+   "terms": [
+    "[amount]",
+    "debited",
+    "you"
+   ]
+  },
+  {
+   "text": "Yоur аccоunt is blоcked",
+   "probs": [
+    0.561345019,
+    0.00269522,
+    0.43595976
+   ],
+   "reason": "ham - driven by \"is\"",
+   "terms": [
+    "is"
+   ]
+  },
+  {
+   "text": "Your acc​ount is bl‌ocked﻿",
+   "probs": [
+    0.561345019,
+    0.00269522,
+    0.43595976
+   ],
+   "reason": "ham - driven by \"is\"",
+   "terms": [
+    "is"
+   ]
+  },
+  {
+   "text": "ＵＰＤＡＴＥ your KYC ①",
+   "probs": [
+    0.00052581,
+    0.001085795,
+    0.998388396
+   ],
+   "reason": "smishing - driven by \"UPDATE\", \"your\", \"KYC\"",
+   "terms": [
+    "UPDATE",
+    "your",
+    "KYC"
+   ]
+  },
+  {
+   "text": "Y0ur acc0unt is bl0cked - ver1fy n0w",
+   "probs": [
+    0.897041693,
+    0.029562403,
+    0.073395904
+   ],
+   "reason": "ham - driven by \"is\", \"-\"",
+   "terms": [
+    "is",
+    "-"
+   ]
+  },
+  {
+   "text": "K Y C  update\t\tneeded\nnow",
+   "probs": [
+    0.098817306,
+    0.149660937,
+    0.751521758
+   ],
+   "reason": "smishing - driven by \"Y\", \"update\", \"needed\"",
+   "terms": [
+    "Y",
+    "update",
+    "needed"
+   ]
+  },
+  {
+   "text": "आपका खाता बंद हो जाएगा",
+   "probs": [
+    0.943693862,
+    0.039198436,
+    0.017107702
+   ],
+   "reason": "ham, no single word decides it",
+   "terms": []
+  },
+  {
+   "text": "🚨🚨🚨",
+   "probs": [
+    0.943693862,
+    0.039198436,
+    0.017107702
+   ],
+   "reason": "ham, no single word decides it",
+   "terms": []
+  },
+  {
+   "text": "zzzzzzzzzzzz",
+   "probs": [
+    0.944145649,
+    0.039888003,
+    0.015966348
+   ],
+   "reason": "ham, no single word decides it",
+   "terms": []
+  },
+  {
+   "text": "Click http://bit.ly/3xK9qLm to claim",
+   "probs": [
+    0.002117221,
+    0.007279917,
+    0.990602863
+   ],
+   "reason": "smishing - driven by \"Click\", \"http://bit.ly/3xK9qLm\", \"claim\"",
+   "terms": [
+    "Click",
+    "http://bit.ly/3xK9qLm",
+    "claim"
+   ]
+  },
+  {
+   "text": "NOTICE: Income Tax Department: Your ITR has been selected for verification. Share documents on WhatsApp. This is your final notice.",
+   "probs": [
+    0.002077846,
+    0.000184822,
+    0.997737332
+   ],
+   "reason": "smishing - driven by \"NOTICE\", \"verification\", \"notice\"",
+   "terms": [
+    "NOTICE",
+    "verification",
+    "notice"
+   ]
+  },
+  {
+   "text": "I wait 4 ü inside da car park...",
+   "probs": [
+    0.994502362,
+    0.003542751,
+    0.001954887
+   ],
+   "reason": "ham - driven by \"I\", \"car\", \"park\"",
+   "terms": [
+    "I",
+    "car",
+    "park"
+   ]
+  },
+  {
+   "text": "ALERT: Dear customer, you have a pending reward of Rs 2500 in your wallet. Claim it now: [Link]",
+   "probs": [
+    0.000361337,
+    0.000193135,
+    0.999445528
+   ],
+   "reason": "smishing - driven by \"customer\", \"Claim\", \"[Link]\"",
+   "terms": [
+    "customer",
+    "Claim",
+    "[Link]"
+   ]
+  },
+  {
+   "text": "mobile office, airtel dwell & mms settings experience exist successfully delivered on your phone! now you can access airtel live by long pressing '0' key on nokia. on other phones launch internet browser and select airtel live (or goto http://live.airtelworld.com), you bear no activation, rental or browsing charges for airtel live. you only pay if you download content, or send mms.",
+   "probs": [
+    0.004232979,
+    0.989717472,
+    0.006049549
+   ],
+   "reason": "spam - driven by \"airtel\", \"airtel\", \"http://live.airtelworld.com)\"",
+   "terms": [
+    "airtel",
+    "airtel",
+    "http://live.airtelworld.com)"
+   ]
+  },
+  {
+   "text": "We not watching movie already. Xy wants 2 shop so i'm shopping w her now.",
+   "probs": [
+    0.984190412,
+    0.005788745,
+    0.010020843
+   ],
+   "reason": "ham - driven by \"watching\", \"so\", \"i'm\"",
+   "terms": [
+    "watching",
+    "so",
+    "i'm"
+   ]
+  },
+  {
+   "text": "Me i'm not workin. Once i get job...",
+   "probs": [
+    0.999368417,
+    0.00035423,
+    0.000277353
+   ],
+   "reason": "ham - driven by \"Me\", \"i'm\", \"job\"",
+   "terms": [
+    "Me",
+    "i'm",
+    "job"
+   ]
+  },
+  {
+   "text": "E-Challan Notification: Your payment of Rs 500 failed. Please try again on our portal. Act immediately to avoid legal consequences.",
+   "probs": [
+    0.001216162,
+    9.1564e-05,
+    0.998692274
+   ],
+   "reason": "smishing - driven by \"E-Challan\", \"Notification\", \"immediately\"",
+   "terms": [
+    "E-Challan",
+    "Notification",
+    "immediately"
+   ]
+  },
+  {
+   "text": "Yeah like if it goes like it did with my friends imma flip my shit in like half an hour",
+   "probs": [
+    0.998927446,
+    0.000820919,
+    0.000251635
+   ],
+   "reason": "ham - driven by \"did\", \"my\", \"my\"",
+   "terms": [
+    "did",
+    "my",
+    "my"
+   ]
+  },
+  {
+   "text": " &lt;#&gt;  mins but i had to stop somewhere first.",
+   "probs": [
+    0.999419545,
+    0.000245804,
+    0.000334651
+   ],
+   "reason": "ham - driven by \"&lt;#&gt\", \"but\", \"somewhere\"",
+   "terms": [
+    "&lt;#&gt",
+    "but",
+    "somewhere"
+   ]
+  },
+  {
+   "text": "twinks, bears, scallies, skins and jocks exist calling now. don't miss the weekend's fun. call 08712466669 at 10p/min. 2 stop texts call 08712460324(nat rate)",
+   "probs": [
+    0.001335582,
+    0.987210075,
+    0.011454344
+   ],
+   "reason": "spam - driven by \"scallies\", \"weekend's\", \"texts\"",
+   "terms": [
+    "scallies",
+    "weekend's",
+    "texts"
+   ]
+  },
+  {
+   "text": "Dear Candidate, your interview with HCL Technologies for 'Cloud Engineer' role is scheduled via Microsoft Teams at 3:00 PM today. - CAPGEM",
+   "probs": [
+    0.993056059,
+    0.003461996,
+    0.003481945
+   ],
+   "reason": "ham - driven by \"Candidate\", \"Technologies\", \"Engineer\"",
+   "terms": [
+    "Candidate",
+    "Technologies",
+    "Engineer"
+   ]
+  },
+  {
+   "text": "for ur chance to gain a £250 cash every wk txt: action to 80608. www.movietrivia.tv custcare 08712405022",
+   "probs": [
+    0.010137408,
+    0.962484341,
+    0.027378252
+   ],
+   "reason": "spam - driven by \"chance\", \"80608\", \"www.movietrivia.tv\"",
+   "terms": [
+    "chance",
+    "80608",
+    "www.movietrivia.tv"
+   ]
+  },
+  {
+   "text": "Dear Customer, Yoyour account has now been put on hold due to unusual tax activity. Click to restore access: [Link]",
+   "probs": [
+    0.000628603,
+    0.000517743,
+    0.998853654
+   ],
+   "reason": "smishing - driven by \"Customer\", \"Yoyour\", \"[Link]\"",
+   "terms": [
+    "Customer",
+    "Yoyour",
+    "[Link]"
+   ]
+  },
+  {
+   "text": "What year. And how many miles.",
+   "probs": [
+    0.993609807,
+    0.005629466,
+    0.000760727
+   ],
+   "reason": "ham - driven by \"What\", \"how\", \"miles\"",
+   "terms": [
+    "What",
+    "how",
+    "miles"
+   ]
+  },
+  {
+   "text": "SMS. ac JSco: Energy is high, but u may not know where 2channel it. 2day ur leadership skills r strong. Psychic? Reply ANS w/question. End? Reply END JSCO",
+   "probs": [
+    0.024504383,
+    0.970602041,
+    0.004893576
+   ],
+   "reason": "spam - driven by \"Reply\", \"w/question\", \"Reply\"",
+   "terms": [
+    "Reply",
+    "w/question",
+    "Reply"
+   ]
+  },
+  {
+   "text": "Ok. But i finish at 6.",
+   "probs": [
+    0.99858697,
+    0.000279432,
+    0.001133598
+   ],
+   "reason": "ham - driven by \"Ok\", \"But\", \"i\"",
+   "terms": [
+    "Ok",
+    "But",
+    "i"
+   ]
+  },
+  {
+   "text": "About  &lt;#&gt; bucks. The banks fees are fixed. Better to call the bank and find out.",
+   "probs": [
+    0.993360988,
+    0.003923994,
+    0.002715018
+   ],
+   "reason": "ham - driven by \"&lt;#&gt\", \"banks\", \"bank\"",
+   "terms": [
+    "&lt;#&gt",
+    "banks",
+    "bank"
+   ]
+  },
+  {
+   "text": "dear customer your pay2tmkyc has exist expired, it�s will be bl0cked within 24 hour, please contact customer! care ph� 6200992462 immediately to verify",
+   "probs": [
+    0.001290347,
+    0.000166035,
+    0.998543618
+   ],
+   "reason": "smishing - driven by \"customer\", \"customer\", \"immediately\"",
+   "terms": [
+    "customer",
+    "customer",
+    "immediately"
+   ]
+  },
+  {
+   "text": "sms. ac jsco: energy embody high, but u may not know where 2channel it. 2day ur leadership skills r strong. psychic? reply ans w/question. end? reply end jsco",
+   "probs": [
+    0.008637917,
+    0.984645357,
+    0.006716725
+   ],
+   "reason": "spam - driven by \"reply\", \"w/question\", \"reply\"",
+   "terms": [
+    "reply",
+    "w/question",
+    "reply"
+   ]
+  },
+  {
+   "text": "Lenskart: Your wishlist item is back in stock at 25% off. While stocks last! Book Now https://lenskart.com",
+   "probs": [
+    0.007160117,
+    0.989372682,
+    0.003467201
+   ],
+   "reason": "spam - driven by \"stock\", \"stocks\", \"https://lenskart.com\"",
+   "terms": [
+    "stock",
+    "stocks",
+    "https://lenskart.com"
+   ]
+  },
+  {
+   "text": "Oh my god! I've found your number again! I'm so glad, text me back xafter this msgs cst std ntwk chg Â£1.50",
+   "probs": [
+    0.202944225,
+    0.7961123,
+    0.000943474
+   ],
+   "reason": "spam - driven by \"text\", \"std\", \"Â£1.50\"",
+   "terms": [
+    "text",
+    "std",
+    "Â£1.50"
+   ]
+  },
+  {
+   "text": "freemsg you experience embody awarded a free mini digital camera, just answer snap to accumulate your prize! (quizclub opt out? stop 80122300p/wk sp:rwm ph:08704050406)",
+   "probs": [
+    0.000648469,
+    0.034397642,
+    0.964953889
+   ],
+   "reason": "smishing - driven by \"snap\", \"accumulate\", \"80122300p/wk\"",
+   "terms": [
+    "snap",
+    "accumulate",
+    "80122300p/wk"
+   ]
+  },
+  {
+   "text": "S.this will increase the chance of winning.",
+   "probs": [
+    0.857944822,
+    0.089595654,
+    0.052459524
+   ],
+   "reason": "ham - driven by \"S.this\", \"will\", \"winning\"",
+   "terms": [
+    "S.this",
+    "will",
+    "winning"
+   ]
+  },
+  {
+   "text": "I dont know exactly could you ask chechi.",
+   "probs": [
+    0.99363476,
+    0.003956616,
+    0.002408624
+   ],
+   "reason": "ham - driven by \"I\", \"exactly\", \"ask\"",
+   "terms": [
+    "I",
+    "exactly",
+    "ask"
+   ]
+  },
+  {
+   "text": "Ok... The theory test? when are Ã¼ going to book? I think it's on 21 may. Coz thought wanna go out with jiayin. But she isnt free",
+   "probs": [
+    0.998485734,
+    0.001331626,
+    0.000182641
+   ],
+   "reason": "ham - driven by \"Ok\", \"when\", \"going\"",
+   "terms": [
+    "Ok",
+    "when",
+    "going"
+   ]
+  },
+  {
+   "text": "Now? I'm going out 4 dinner soon..",
+   "probs": [
+    0.998956094,
+    0.000248358,
+    0.000795548
+   ],
+   "reason": "ham - driven by \"I'm\", \"going\", \"soon\"",
+   "terms": [
+    "I'm",
+    "going",
+    "soon"
+   ]
+  },
+  {
+   "text": "WARNING: Dear Consumer, Your electricity service is being suspended due to non-payment. Call 6202XXXXXX to stop.",
+   "probs": [
+    0.005128109,
+    0.00094826,
+    0.99392363
+   ],
+   "reason": "smishing - driven by \"WARNING\", \"suspended\", \"6202XXXXXX\"",
+   "terms": [
+    "WARNING",
+    "suspended",
+    "6202XXXXXX"
+   ]
+  },
+  {
+   "text": "urgent! we be trying to touch you. last weekends draw shows that you have succeed a £900 prize guaranteed. call 09061701851. claim code k61. valid 12hours only",
+   "probs": [
+    0.007618223,
+    0.053522145,
+    0.938859632
+   ],
+   "reason": "smishing - driven by \"urgent\", \"£900\", \"claim\"",
+   "terms": [
+    "urgent",
+    "£900",
+    "claim"
+   ]
+  },
+  {
+   "text": "Thanks for your subscription to Ringtone UK your mobile will be charged £5/month Please confirm by replying YES or NO. If you reply NO you will not be charged",
+   "probs": [
+    0.02506928,
+    0.946160287,
+    0.028770433
+   ],
+   "reason": "spam - driven by \"Ringtone\", \"charged\", \"charged\"",
+   "terms": [
+    "Ringtone",
+    "charged",
+    "charged"
+   ]
+  },
+  {
+   "text": "Special offer for you: Rs 2000 pack now at Rs 199 on the Jio app. Valid till 23-Feb. Shop Now -JIOIND",
+   "probs": [
+    0.008892402,
+    0.98527515,
+    0.005832448
+   ],
+   "reason": "spam - driven by \"Special\", \"offer\", \"now\"",
+   "terms": [
+    "Special",
+    "offer",
+    "now"
+   ]
+  }
+ ]
+}

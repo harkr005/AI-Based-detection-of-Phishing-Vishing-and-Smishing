@@ -1,0 +1,211 @@
+\chapter{System Methodology}\thispagestyle{thesisstyle} %chapter head
+\graphicspath{{Chapter5/}}
+{\setstretch{1.5}
+%--------------------------------------------------------------------------------------
+
+\section{Proposed Methodology}
+The method has four ideas, and each of them answers a gap from Chapter~2.
+
+\begin{enumerate}
+\item \textbf{A small model per channel.} Each channel gets the smallest model that works: character n-grams for SMS, DistilBERT for email, a domain-only boosted-tree model for links, and a speech pipeline for calls. An earlier MobileBERT experiment for SMS reached the same accuracy on a different corpus at 37 times the size, so it was not used.
+\item \textbf{Behaviour next to content.} Each sender or caller has a profile that is updated \emph{after} each message is scored, so a score never sees its own message. The deviation of the new message from the profile is turned into a score between 0 and 1.
+\item \textbf{Abstention instead of guessing.} If a source has nothing to say (no link, too few known senders, no network, no caller number), it abstains. Its weight moves to the other sources. Unknown information is never replaced by a neutral value.
+\item \textbf{Explanation by construction.} Link scores are explained with exact tree-based feature contributions (TreeSHAP~\cite{lundberg2020trees}), and an SMS is explained by deleting one word at a time and watching the score move. No separate approximate explanation model is used.
+\end{enumerate}
+
+The chapter first gives the pseudocode of five algorithms (Section~\ref{sec:algs}) and then explains each of them (Section~\ref{sec:algx}). Only pseudocode is shown; no program code is included in this report.
+
+\section{Algorithms}\label{sec:algs}
+
+\begin{algorithm}[H]
+\caption{Scoring one SMS}\label{alg:sms}
+\begin{algorithmic}[1]
+\REQUIRE message text $t$, optional sender header $h$
+\ENSURE verdict, risk $r$ and reasons
+\STATE $t' \leftarrow$ normalise($t$) \COMMENT{Unicode NFKC, remove zero-width characters, fold look-alike letters}
+\STATE $p \leftarrow$ LogisticRegression(CharNgramTFIDF($t'$)) \COMMENT{probabilities for ham, spam, smishing}
+\STATE $A \leftarrow$ scam acts found in $t'$ \COMMENT{ask for a code, threat, remote access, money, secrecy; ignored when a warning word comes earlier in the same sentence}
+\IF{$A$ is empty}
+  \STATE multiply $p_{\text{smishing}}$ by 0.5 and renormalise $p$ \COMMENT{a message that asks for nothing is less likely a scam}
+\ENDIF
+\STATE $L \leftarrow$ links in $t'$
+\IF{$L$ is not empty}
+  \STATE $u \leftarrow \max_{l \in L}$ LinkScore($l$); if Safe Browsing lists $l$, set $u \leftarrow \max(u, 0.95)$
+\ELSE
+  \STATE $u \leftarrow$ none
+\ENDIF
+\STATE $b \leftarrow$ SmsBehaviour($h$, $t'$, time) \COMMENT{header registered with TRAI, number posing as an institution, first contact, link from a first contact, burst, odd hour}
+\STATE \RETURN Fuse($p$, $u$, $b$)
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Scoring one email (Gmail path)}\label{alg:email}
+\begin{algorithmic}[1]
+\REQUIRE raw message with headers
+\ENSURE verdict, risk $r$ and reasons
+\STATE parse headers, body text, link hosts and attachments
+\STATE $p \leftarrow$ DistilBERT(body) \COMMENT{probabilities for ham, spam, phishing}
+\STATE $q \leftarrow$ PersuasionHead(body) \COMMENT{used only to word the explanation}
+\FORALL{link $l$ in the body and inside PDF, HTML, SVG and calendar attachments}
+  \STATE $s_l \leftarrow$ MailLinkModel($l$) \COMMENT{split host with the Public Suffix List; brand mismatch; sender's own domain judged by domain alone}
+  \IF{Safe Browsing lists $l$}
+    \STATE $s_l \leftarrow \max(s_l, 0.95)$
+  \ENDIF
+\ENDFOR
+\FORALL{attachment of a dangerous file type}
+  \STATE add a link score of 0.95
+\ENDFOR
+\STATE $u \leftarrow \max$ of all link scores, or none
+\STATE $a \leftarrow$ results of SPF, DKIM and DMARC
+\IF{sender is a trusted repeat sender \textbf{and} $a$ passes \textbf{and} every link stays on the sender's own domain}
+  \STATE multiply $p_{\text{phishing}}$ by 0.1 and renormalise $p$
+\ENDIF
+\STATE $b \leftarrow$ EmailBehaviour(profile, headers, $a$, crowd reports)
+\STATE $result \leftarrow$ Fuse($p$, $u$, $b$)
+\STATE update the sender profile with this message \COMMENT{only after scoring}
+\STATE \RETURN $result$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Behaviour score of an email sender}\label{alg:behaviour}
+\begin{algorithmic}[1]
+\REQUIRE sender, receiver, time, text, whether the text has a link, authentication results, crowd reports
+\ENSURE behaviour score $b \in [0,1]$, or abstain
+\STATE $f \leftarrow$ empty feature set
+\IF{SPF, DKIM or DMARC failed}
+  \STATE $f[\text{auth\_fail}] \leftarrow 1$
+\ENDIF
+\IF{at least three other users reported this sender and their copy passed DMARC}
+  \STATE $f[\text{crowd\_reported}] \leftarrow 1$
+\ENDIF
+\IF{fewer than 20 senders are known in the profile store}
+  \STATE \RETURN $b$ computed from $f$ only if $f$ is not empty, else abstain
+\ENDIF
+\STATE $f[\text{first\_contact}] \leftarrow 1$ if the sender has no history and was never written to by this mailbox
+\STATE $f[\text{new\_domain}] \leftarrow 1$ if the sender's domain was never seen
+\STATE $f[\text{display\_mismatch}] \leftarrow 1$ if the display name claims a brand that the domain does not match
+\STATE $f[\text{freemail\_brand}] \leftarrow 1$ if an institution name is sent from a free mail account
+\STATE $f[\text{url\_first\_contact}] \leftarrow 1$ if the message has a link and it is the sender's first message
+\STATE \RETURN $\min\bigl(1, \sum_k w_k f[k]\bigr)$ \COMMENT{weights in Table~\ref{tab:beh}}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Fusion of channel scores into a verdict}\label{alg:fusion}
+\begin{algorithmic}[1]
+\REQUIRE class probabilities $p$, link score $u$ (or none), behaviour score $b$ (or none)
+\ENSURE verdict, risk $r$, weights and reasons
+\STATE $s_{\text{content}} \leftarrow$ probability of the malicious class; $c \leftarrow \max_k p_k$
+\STATE $H \leftarrow -\sum_k p_k \log p_k \,/\, \log K$ \COMMENT{normalised entropy}
+\IF{$c \ge 0.6$}
+  \STATE $(w_{\text{content}}, w_{\text{link}}, w_{\text{beh}}) \leftarrow (0.50, 0.30, 0.20)$
+\ELSE
+  \STATE $(w_{\text{content}}, w_{\text{link}}, w_{\text{beh}}) \leftarrow (0.25, 0.30, 0.45)$
+\ENDIF
+\STATE $L \leftarrow$ the sources that are not ``none''
+\STATE $\tilde w_j \leftarrow w_j / \sum_{i \in L} w_i$ for $j \in L$
+\STATE $r \leftarrow \sum_{j \in L} \tilde w_j s_j$
+\STATE verdict $\leftarrow$ Safe if $r < 0.35$, Suspicious if $0.35 \le r < 0.70$, else Phishing
+\IF{verdict is Safe \textbf{and} ($H \ge 0.8$ \textbf{or} $b \ge 0.60$)}
+  \STATE verdict $\leftarrow$ Suspicious \COMMENT{never directly to Phishing}
+\ENDIF
+\STATE \RETURN verdict, $r$, $\tilde w$, reasons
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Scoring a call}\label{alg:voice}
+\begin{algorithmic}[1]
+\REQUIRE call audio or transcript, optional caller number
+\ENSURE verdict, risk timeline and the scam moves found
+\STATE transcribe the audio with Whisper (skip for a transcript)
+\FORALL{window of 3 s, every 2 s}
+  \STATE $x \leftarrow$ the last 15 s of text
+  \STATE $z_i \leftarrow \min\bigl(1, \sum_{\text{rule } k \text{ fires on } x} w_k \bigr)$ \COMMENT{six rules, Table~\ref{tab:rules}}
+\ENDFOR
+\STATE $m_0 \leftarrow z_0$
+\FORALL{window $i \ge 1$}
+  \STATE $\alpha \leftarrow 0.6$ if $z_i > m_{i-1}$ else $0.2$ \COMMENT{rises fast, falls slowly}
+  \STATE $m_i \leftarrow \alpha z_i + (1-\alpha) m_{i-1}$
+\ENDFOR
+\STATE $acts \leftarrow$ ActModel(whole transcript) \COMMENT{seven scam moves; a single move counts half unless it is a threat, secrecy or prize}
+\STATE $m_i \leftarrow \min(1, m_i + acts)$ for every $i$
+\IF{$m_{i-1} \ge 0.70$ and $m_i \ge 0.70$ for two consecutive windows}
+  \STATE verdict $\leftarrow$ Phishing, alert time $\leftarrow$ time of window $i$
+\ELSIF{$\max_i m_i \ge 0.35$}
+  \STATE verdict $\leftarrow$ Suspicious
+\ELSE
+  \STATE verdict $\leftarrow$ Safe
+\ENDIF
+\STATE $spoof \leftarrow$ SyntheticVoiceScore(audio), counted only if $spoof \ge 0.5$
+\STATE $b \leftarrow$ VoiceBehaviour(caller number, transcript, earlier SMS from the same number)
+\STATE \RETURN fuse with weights (content 0.65, spoof 0.20, behaviour 0.15), renormalised over the sources present
+\end{algorithmic}
+\end{algorithm}
+
+\section{Explanation of the Algorithms}\label{sec:algx}
+
+\subsection{SMS (Algorithm~\ref{alg:sms})}
+SMS is short, so a transformer gains nothing here. Character n-grams of length 3 to 5 survive misspellings and look-alike letters, such as a zero in place of the letter O. Every input is normalised first, and half the training set also receives an obfuscated twin (letter swaps, leetspeak, extra punctuation, synonyms). The act check asks a different question from the model: did this message \emph{ask for something}, \emph{threaten}, or \emph{demand payment}? Real bank notices contain the same words as scams (``never share your OTP''), so a warning word earlier in the same sentence switches the rule off in text. A message with no act at all has its smishing probability halved. The value 0.5 was picked from a trade-off table, because it gave the largest drop in false alarms on real bank SMS (10.0\% to 2.5\%) for the smallest loss of smishing recall (3.7 points).
+
+\subsection{Email (Algorithm~\ref{alg:email})}
+DistilBERT reads up to 256 tokens of the mail body. Links are judged by a separate model because collections of phishing web pages encode how they were gathered; the link model therefore sees only the host name (length, dots, hyphens, digits, entropy, rarity of the top-level domain, lure words and the shape of an IP address). For mail, each host is split with the Public Suffix List, so the registered domain and the part in front of it are scored separately. A known brand used outside its own domain is flagged. Links from a sender whose mail passes DMARC and who ranks in the top million sites are judged by the domain alone. Every link is also checked against Safe Browsing, and a listed link is raised to 0.95. The trust damping is applied only to a repeat sender whose mail authenticates and whose links all stay on its own domain, so a link to any other domain removes the trust.
+
+\subsection{Behaviour engine (Algorithm~\ref{alg:behaviour})}
+Profiles are kept in PostgreSQL. A feature such as ``first contact'' only has a meaning against a populated profile store, because against an empty store every sender is a first contact. For this reason the engine abstains until 20 senders are known, except for two checks that need no profile at all: a failed email authentication and a crowd report. The weights are set by hand (Table~\ref{tab:beh}). Four features that were tried (message bursts, mass mailing, odd hours and writing-style change) were found to be inverted on the only public corpus with real senders and dates, because its recipients are mailing lists, so they carry zero weight.
+
+\begin{table}[H]
+\caption{Behaviour rule weights}
+\label{tab:beh}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{2cm}|p{12.2cm}|}
+\hline
+\textbf{Channel} & \textbf{Feature and weight} \\ \hline
+Email & failed SPF/DKIM/DMARC 0.60; crowd report 0.60; first contact 0.35; new domain 0.30; display-name mismatch 0.30; institution name from a free mail account 0.25; link in a first message 0.20 \\ \hline
+SMS & number posing as an institution 0.60; link in a first message 0.25; header not on the TRAI registry 0.15; first contact 0.10; burst 0.10; odd hour 0.10 \\ \hline
+Call & bank or financial claim from a number outside the 1600 series 0.60; number that also sent a risky SMS 0.60; withheld number 0.30; international number 0.25 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Fusion (Algorithm~\ref{alg:fusion})}\label{sec:method-fusion}
+The risk is a weighted average of the sources that reported:
+\begin{equation}
+r=\sum_{j\in L}\tilde w_j s_j,\qquad \tilde w_j=\frac{w_j}{\sum_{i\in L}w_i},
+\end{equation}
+where $s_j$ is the score of source $j$ and $L$ is the set of sources that produced output. When the content model is unsure ($c<0.6$), the weights move towards behaviour. Two gates follow the sum. A weighted sum cannot lift a mail that the content model has already cleared, because the behaviour weight is at most 0.45 and 0.45 passes the 0.35 line only when content is also unsure (this happened for 4 of 7{,}338 test mails). So a behaviour score of 0.60 or more moves a Safe mail to Suspicious, but never to Phishing, because structure alone should not condemn a message. The second gate says that a very uncertain model (normalised entropy of 0.8 or more) can never say Safe. The 0.60 limit was chosen on the training week (1--7 August) of the CEAS stream, and the test day (8 August) was scored once afterwards.
+
+\subsection{Calls (Algorithm~\ref{alg:voice})}
+Three seconds of speech is about eight words, which is shorter than the phrases to be found (``please share the code you received''), so each window is scored on the last 15 seconds. With this change the share of scam calls alerted on the development set rose from 0.08 to 0.69 without any change to the thresholds. The moving average is deliberately asymmetric: one alarming sentence is not forgotten when the caller changes the subject. An alert needs two windows in a row above 0.70, so a single word cannot trigger it. Six rule families look for what the caller \emph{does}, not what the call is about (Table~\ref{tab:rules}), and the act model finds the same moves when they are worded differently. A synthetic voice is not a scam in itself, because assistants and dubbed audio are synthetic as well. So the spoof score can only raise the risk, and only when it reaches 0.5.
+
+\begin{table}[H]
+\caption{Scam-move rules for calls}
+\label{tab:rules}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{2.2cm}|p{8.6cm}|p{1.4cm}|p{1.6cm}|}
+\hline
+\textbf{Rule} & \textbf{What it looks for} & \textbf{Weight} & \textbf{Act-model weight} \\ \hline
+Ask & a verb such as share, read, confirm or update near OTP, CVV, PIN, password, Aadhaar, PAN, KYC or a card & 0.65 & 0.65 (credential) \\ \hline
+Remote & getting control of the phone: remote-access apps, screen sharing, gift-card or store codes & 0.65 & 0.65 \\ \hline
+Money & scanning a QR code, sending or paying an amount to an account or UPI id, processing fees, refundable deposits & 0.45 & 0.60 (payment) \\ \hline
+Threat & account blocked or suspended, arrest, police, legal action, a deadline of minutes & 0.45 & 0.45 \\ \hline
+Secrecy & ``do not tell anyone'', ``do not disconnect'', ``keep this confidential'' & 0.45 & 0.50 \\ \hline
+Entity & sensitive words only mentioned (OTP, CVV, Aadhaar, KYC, net banking) & 0.25 & -- \\ \hline
+Urgency, prize & demand to act at once; an unrequested prize or refund & -- & 0.30, 0.35 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Notes on the Pseudocode}
+The pseudocode is written for readability. A few conventions are used.
+\begin{itemize}
+\item ``none'' means that a source abstains. It is different from a score of zero, which means that the source looked and found nothing.
+\item The weights, thresholds and gates are the values used in the running system. They are the calibration points of the design and can be re-fitted when a labelled event log from a real deployment becomes available.
+\item Updating a profile always comes after scoring, so no message is ever scored against a profile that already contains it.
+\end{itemize}
+
+\section{Summary}
+The methodology uses a small model for each channel, a behaviour engine that profiles senders and callers, and a fusion rule that shares weights among the sources that reported and refuses to clear uncertain or suspicious-looking mail. The next chapter describes the data and the set-up used to implement and test it.
+
+%--------------------------------------------------------------------------------------
+}

@@ -1,0 +1,75 @@
+\chapter{Literature Survey}\thispagestyle{thesisstyle} %chapter head
+\graphicspath{{Chapter2/figures/}}
+{ \setstretch{1.5}
+%--------------------------------------------------------------------------------------
+
+\section{Review of Existing Work}
+
+\subsection{Email phishing detection}
+Transformer encoders have become the usual choice for phishing mail. Uddin and Sarker~\cite{uddin2024explainable} show that a transformer outperforms bag-of-words models and add explanations to its output. Comparative studies find, however, that no single architecture wins on every dataset~\cite{altwaijry2024advancing,alhuzali2025indepth}. Benavides-Astudillo et al.~\cite{benavides2023phishing} combine natural language features with a bidirectional GRU. More recent work adds LIME and SHAP explanations~\cite{roshinta2026temporal,calzarossa2024explainable} and tests robustness against adversarial rewriting~\cite{sup2025explainable,kulkarni2024ml2llm}. A survey of AI-based phishing detection~\cite{ahmad2025spectrum} points out that most reported results come from a handful of public corpora, which limits how far they can be trusted on new mail.
+
+\subsection{SMS phishing (smishing) detection}
+Smishing work reports very high accuracy with deep models: BERT~\cite{jain2025smishing}, a CNN-LSTM hybrid~\cite{mehmood2024smishing} and multi-class deep networks~\cite{boulahaia2025multiclass}. In almost every case the evaluation is a random split of a static dataset. Because SMS datasets contain many near-copies, such a split rewards memorising templates, and the reported accuracy does not say how the model behaves on a new campaign or a new country's message style.
+
+\subsection{Link (URL) analysis}
+Gradient-boosted trees with feature attribution are a common choice for phishing site detection~\cite{uddin2025boosting}. Isolation forests have been tried for phishing and for web-traffic anomalies~\cite{lestari2025isolation,chua2024isolation}, but these treat the problem as pure anomaly detection on features, without a sender history.
+
+\subsection{Voice phishing (vishing) detection}
+Xing et al.~\cite{xing2020fraudcall} classify call-detail records with deep learning, using only call metadata and no content. Hong et al.~\cite{hong2023scamcalls} transcribe calls and classify the text. Triantafyllopoulos et al.~\cite{triantafyllopoulos2025vishing} argue that persuasion is the dominant signal in spoken scams. Sim and Kim~\cite{sim2025slm} fine-tune small language models on transcripts for voice-phishing detection, using text only. Naidoo and Mhlongo~\cite{naidoo2024smishvish} treat smishing and vishing together with classical models, which is the closest work to ours in scope, but it does not combine the channels into one verdict or use sender behaviour.
+
+\subsection{Synthetic-voice (deepfake) detection}
+Scammers can now use speech synthesis to imitate a voice. Anti-spoofing research has produced end-to-end networks such as RawNet2~\cite{tak2021rawnet2}, graph-attention networks such as AASIST~\cite{jung2022aasist}, and front ends built on self-supervised speech models~\cite{tak2022ssl}. They are evaluated on the ASVspoof series~\cite{wang2020asvspoof2019,liu2023asvspoof2021,wang2024asvspoof5} and on real-world recordings~\cite{muller2022itw}, where performance drops sharply compared with laboratory data.
+
+\subsection{Evaluation practice}
+Two papers explain why many security results do not hold up in practice. Arp et al.~\cite{arp2022dos} list common mistakes in machine-learning security research, among them spurious correlations and unrealistic data splits. Kapoor and Narayanan~\cite{kapoor2023leakage} document how data leakage makes results in machine-learning-based science hard to reproduce. These two papers shaped how we tested our own system (Chapter~6).
+
+\section{Comparative Analysis of Existing Systems}
+Table~\ref{tab:related} summarises representative work and what each leaves out.
+
+\begin{table}[H]
+\caption{Comparison of representative prior work}
+\label{tab:related}
+\centering\small\setstretch{1.05}
+\begin{tabular}{|p{3.7cm}|p{1.5cm}|p{3.3cm}|p{5.3cm}|}
+\hline
+\textbf{Work} & \textbf{Channel} & \textbf{Method} & \textbf{Main limitation} \\ \hline
+Xing et al.~\cite{xing2020fraudcall} (2020) & Voice & Deep net on call records & Metadata only, no call content \\ \hline
+Benavides-Astudillo et al.~\cite{benavides2023phishing} (2023) & Email & NLP features + BiGRU & One channel only \\ \hline
+Hong et al.~\cite{hong2023scamcalls} (2023) & Voice & Speech-to-text + LSTM & No synthetic-voice check \\ \hline
+Altwaijry et al.~\cite{altwaijry2024advancing} (2024) & Email & CNN / BiGRU & One channel, random split \\ \hline
+Mehmood et al.~\cite{mehmood2024smishing} (2024) & SMS & CNN-LSTM & Static random split \\ \hline
+Uddin and Sarker~\cite{uddin2024explainable} (2024) & Email & Transformer & No sender behaviour \\ \hline
+Jain et al.~\cite{jain2025smishing} (2025) & SMS & BERT & No behaviour, no test on unseen data \\ \hline
+Sim and Kim~\cite{sim2025slm} (2025) & Voice & Small language model & Text only, audio not used \\ \hline
+Triantafyllopoulos et al.~\cite{triantafyllopoulos2025vishing} (2025) & Voice & Survey & No benchmark \\ \hline
+\textbf{This project} & \textbf{All three} & \textbf{Models + behaviour + fusion} & \textbf{--} \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Research Gap Analysis}
+The survey shows five gaps.
+\begin{enumerate}
+\item \textbf{Separate channels.} Existing systems handle email, SMS or voice, one at a time. No work we found joins the three into one verdict.
+\item \textbf{Content only.} Almost all work judges the words of a message. It does not use the history of the sender or caller, although this is the part of a scam that changes least.
+\item \textbf{Optimistic evaluation.} Most results come from random splits of one dataset. Few are tested on later time periods, different corpora or unseen people, and the weak results are seldom reported.
+\item \textbf{No privacy-preserving phone deployment.} Smishing models are usually run on a server. A model that reads every SMS on a phone and uploads it creates a new privacy risk.
+\item \textbf{Voice systems that ignore either content or the voice.} Some work uses the words of a call and some uses the audio for synthetic-voice detection, but they are not combined, and the voice signal is not treated with care (a synthetic voice is not always a scam).
+\end{enumerate}
+
+\section{Specific Objectives of the Project after Gap Analysis}
+From these gaps, four specific objectives were set.
+\begin{enumerate}
+\item Build one system with a model for each channel and a shared fusion step that gives a single verdict for email, SMS and calls.
+\item Add a behaviour engine that profiles senders and callers, and show with a measurement that it catches what content models miss.
+\item Run the SMS check completely on the phone, with no network permission, and keep email bodies off the server.
+\item Evaluate only on unseen data with rules fixed in advance, and report every weak result.
+\end{enumerate}
+
+\section{Proposed Solution}
+We propose a three-channel scam detector in which a small model reads each message (a character n-gram model for SMS, DistilBERT for email, a domain-only model for links, and a speech pipeline with a synthetic-voice detector for calls), a behaviour engine scores how far the sender or caller departs from their own history, and an adaptive fusion rule combines the scores into one of three bands, Safe, Suspicious or Phishing, with reasons in plain language. The SMS path also runs on an Android phone with no network access, and every result in this report is measured on data the models never trained on.
+
+\section{Summary}
+Prior work is strong inside a single channel but weak across channels, and most of it is tested in ways that flatter the result. The gaps are separate channels, content-only analysis, optimistic evaluation, no private phone deployment and uncombined voice signals. The project is built to close these gaps, and the next chapter turns the objectives into requirements.
+
+%--------------------------------------------------------------------------------------
+}

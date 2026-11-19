@@ -1,0 +1,12 @@
+<!-- Two destinations. Safe / Spam / Scam used to be three, which hid every
+     failed scan: CATEGORY_ERROR had no section to appear in. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_messages"
+        android:title="Messages"
+        android:checkable="true" />
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Settings"
+        android:checkable="true" />
+</menu>
